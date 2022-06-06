@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sistema_de_planos.Dominio.Entidades;
 using Sistema_de_planos.Infraestructura.Datos;
+using Sistema_de_planos.Models;
 
 namespace Sistema_de_planos.Controllers
 {
@@ -84,16 +85,23 @@ namespace Sistema_de_planos.Controllers
         // POST: api/Planoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Plano>> PostPlano(Plano plano)
+        public async Task<ActionResult<Plano>> PostPlano(PlanoModel planoM)
         {
           if (_context.Planos == null)
           {
               return Problem("Entity set 'PlanosContext.Planos'  is null.");
           }
+            Plano plano = new();
+            plano.NumPlano = planoM.NumPlano;
+            plano.Propietario = planoM.Propietario;
+            plano.Arancel = planoM.Arancel;
+            plano.FechaOriginal = DateTime.Now;
+            plano.EstadoId = (int) planoM.EstadoId;
+            plano.PartidoId = (int)planoM.PartidoId;
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPlano", new { id = plano.Id }, plano);
+            return CreatedAtAction("GetPlano", new { id = plano.Id }, planoM);
         }
 
         // DELETE: api/Planoes/5
