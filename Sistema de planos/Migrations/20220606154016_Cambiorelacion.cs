@@ -29,7 +29,7 @@ namespace Sistema_de_planos.Migrations
                 column: "EstadoId",
                 principalTable: "Estados",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -61,13 +61,13 @@ namespace Sistema_de_planos.Migrations
                         column: x => x.EstadosId,
                         principalTable: "Estados",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EstadoHistorico_Historicos_HistoricosId",
                         column: x => x.HistoricosId,
                         principalTable: "Historicos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

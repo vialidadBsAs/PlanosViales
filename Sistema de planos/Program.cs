@@ -1,3 +1,5 @@
+using Sistema_de_planos.Infraestructura.Datos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext <PlanosContext>(); //le digo cuál va a ser mi contexto
 
 var app = builder.Build();
 
