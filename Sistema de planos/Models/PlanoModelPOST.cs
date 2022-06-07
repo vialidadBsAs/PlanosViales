@@ -1,6 +1,6 @@
 ﻿namespace Sistema_de_planos.Models
 {
-    public class PlanoModel
+    public class PlanoModelPOST
     {
         public int NumPlano { get; set; }
         public string Propietario { get; set; } = string.Empty;

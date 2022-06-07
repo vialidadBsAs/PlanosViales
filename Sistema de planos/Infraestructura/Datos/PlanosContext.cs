@@ -8,7 +8,7 @@ namespace Sistema_de_planos.Infraestructura.Datos
     public partial class PlanosContext : DbContext
     {
         public DbSet<Dominio.Entidades.Estado> Estados { get; set; }
-        public DbSet<Dominio.Entidades.Partidos> Partidos { get; set; }
+        public DbSet<Dominio.Entidades.Partido> Partidos { get; set; }
         public DbSet<Dominio.Entidades.Historico> Historicos { get; set; }
         public DbSet<Dominio.Entidades.Plano> Planos { get; set; }
 

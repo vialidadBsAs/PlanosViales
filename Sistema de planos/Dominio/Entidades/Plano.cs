@@ -10,7 +10,7 @@
         public int EstadoId { get; set; }
         public int PartidoId { get; set; }
         public Estado Estado { get; set; }
-        public Partidos Partido { get; set; }
+        public Partido Partido { get; set; }
         public List<Historico> Historicos { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sistema_de_planos.Dominio.Entidades;
 using Sistema_de_planos.Infraestructura.Datos;
+using Sistema_de_planos.Models;
 
 namespace Sistema_de_planos.Controllers
 {
@@ -84,12 +85,21 @@ namespace Sistema_de_planos.Controllers
         // POST: api/Historicos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Historico>> PostHistorico(Historico historico)
+        public async Task<ActionResult<Historico>> PostHistorico(HistoricoModelPOST historicoM)
         {
           if (_context.Historicos == null)
           {
               return Problem("Entity set 'PlanosContext.Historicos'  is null.");
           }
+            Historico historico = new();
+            historico.Observacion = historicoM.Observacion;
+            historico.FechaPresentacion = DateTime.Now;
+            historico.NombreRetiro = historicoM.NombreRetiro;
+            historico.FechaRetiro = historicoM.FechaRetiro;
+            historico.PlanoId = historicoM.PlanoId;
+            historico.EstadoId = historicoM.EstadoId;
+
+
             _context.Historicos.Add(historico);
             await _context.SaveChangesAsync();
 

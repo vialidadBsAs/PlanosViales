@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sistema_de_planos.Dominio.Entidades;
 using Sistema_de_planos.Infraestructura.Datos;
+using Sistema_de_planos.Models;
 
 namespace Sistema_de_planos.Controllers
 {
@@ -84,12 +85,15 @@ namespace Sistema_de_planos.Controllers
         // POST: api/Estados
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Estado>> PostEstado(Estado estado)
+        public async Task<ActionResult<Estado>> PostEstado(EstadoModelPOST estadoM)
         {
           if (_context.Estados == null)
           {
               return Problem("Entity set 'PlanosContext.Estados'  is null.");
           }
+            Estado estado = new();
+            estado.Descripcion = estadoM.Descripcion;
+            estado.Codigo = estadoM.Codigo;
             _context.Estados.Add(estado);
             await _context.SaveChangesAsync();
 

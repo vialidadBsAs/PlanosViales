@@ -85,7 +85,7 @@ namespace Sistema_de_planos.Controllers
         // POST: api/Planoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Plano>> PostPlano(PlanoModel planoM)
+        public async Task<ActionResult<Plano>> PostPlano(PlanoModelPOST planoM)
         {
           if (_context.Planos == null)
           {
@@ -97,11 +97,11 @@ namespace Sistema_de_planos.Controllers
             plano.Arancel = planoM.Arancel;
             plano.FechaOriginal = DateTime.Now;
             plano.EstadoId = (int) planoM.EstadoId;
-            plano.PartidoId = (int)planoM.PartidoId;
+            plano.PartidoId = (int) planoM.PartidoId;
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPlano", new { id = plano.Id }, planoM);
+            return CreatedAtAction("GetPlano", new { id = plano.Id }, plano);
         }
 
         // DELETE: api/Planoes/5
