@@ -1,15 +1,12 @@
-﻿namespace Sistema_de_planos.Dominio.Entidades
+﻿namespace Sistema_de_planos.Models
 {
-    public partial class Historico
+    public class HistoricoModelGET
     {
         public int Id { get; set; }
         public string Observacion { get; set; } = string.Empty;
         public DateTime FechaPresentacion { get; set; }
         public DateTime FechaRetiro { get; set; }
         public string NombreRetiro { get; set; } = string.Empty;
-        public Plano? Plano { get; set; }
-        public Estado Estado { get; set; }
-        public int PlanoId { get; set; }
-        public int EstadoId { get; set; }
+        public string? EstadoDescripcion { get; set; }
     }
 }

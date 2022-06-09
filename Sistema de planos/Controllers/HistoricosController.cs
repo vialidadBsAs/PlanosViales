@@ -24,13 +24,22 @@ namespace Sistema_de_planos.Controllers
 
         // GET: api/Historicos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Historico>>> GetHistoricos()
+        public async Task<ActionResult<IEnumerable<HistoricoModelGET>>> GetHistoricos()
         {
           if (_context.Historicos == null)
           {
               return NotFound();
           }
-            return await _context.Historicos.ToListAsync();
+            return await _context.Historicos.Include(h => h.Estado).Select(h => new HistoricoModelGET
+            {
+                Id = h.Id,
+                Observacion = h.Observacion,
+                FechaPresentacion = h.FechaPresentacion,
+                FechaRetiro = h.FechaRetiro,    
+                NombreRetiro = h.NombreRetiro,
+                EstadoDescripcion = h.Estado.Descripcion
+            })
+                .ToListAsync();
         }
 
         // GET: api/Historicos/5
