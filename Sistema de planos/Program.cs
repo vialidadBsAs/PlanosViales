@@ -1,7 +1,8 @@
 using Sistema_de_planos.Infraestructura.Datos;
 
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -23,4 +24,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseCors(options =>
+{
+    //options.WithOrigins("http://localhost:4200/");
+    options.AllowAnyOrigin();
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+
+});
+
 app.Run();
+
+

@@ -24,13 +24,23 @@ namespace Sistema_de_planos.Controllers
 
         // GET: api/Planoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Plano>>> GetPlanos()
+        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanos()
         {
           if (_context.Planos == null)
           {
               return NotFound();
           }
-            return await _context.Planos.ToListAsync();
+            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Select(p => new PlanoModelGET
+            {
+                Id = p.Id,
+                NumPlano = p.NumPlano,
+                Propietario = p.Propietario,
+                Arancel = p.Arancel,
+                FechaOriginal = p.FechaOriginal,
+                EstadoDescripcion = p.Estado.Descripcion,
+                PartidoNombre = p.Partido.Nombre
+            }).
+                ToListAsync();
         }
 
         // GET: api/Planoes/5

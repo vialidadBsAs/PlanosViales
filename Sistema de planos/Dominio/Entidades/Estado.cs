@@ -6,7 +6,5 @@
         public string Descripcion { get; set; } = string.Empty;
         public string Codigo { get; set; } = string.Empty ;
 
-        public List<Plano>? Planos { get; set; }
-        public List<Historico>? Historicos { get; set; } 
     }
 }
