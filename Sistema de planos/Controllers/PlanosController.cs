@@ -75,7 +75,7 @@ namespace Sistema_de_planos.Controllers
                 return NotFound();
             }
 
-            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Propietario == propietario)
+            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Propietario.Contains(propietario))
                 .Select(p => new PlanoModelGET
             {
                 Id = p.Id,
