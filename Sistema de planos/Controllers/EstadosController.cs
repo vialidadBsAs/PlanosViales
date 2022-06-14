@@ -24,12 +24,29 @@ namespace Sistema_de_planos.Controllers
 
         // GET: api/Estados
         [HttpGet]
+        public async Task<ActionResult<ApiResult<Estado>>> GetEstados(
+            int pageIndex = 0,
+            int pageSize = 10)
+        {
+            return await ApiResult<Estado>.CreateAsync(
+                _context.Estados,
+                pageIndex,
+                pageSize,
+                "descripcion",
+                "asc",
+                "descripcion",
+                null
+                );
+        }
+
+        // GET: api/Estados/onlyEstados -- DEVUELVE SÓLO LOS ESTADOS SIN USAR APIRESULT
+        [HttpGet("/onlyEstados")]
         public async Task<ActionResult<IEnumerable<Estado>>> GetEstados()
         {
-          if (_context.Estados == null)
-          {
-              return NotFound();
-          }
+            if (_context.Estados == null)
+            {
+                return NotFound();
+            }
             return await _context.Estados.ToListAsync();
         }
 
