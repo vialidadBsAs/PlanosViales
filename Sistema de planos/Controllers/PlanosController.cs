@@ -22,25 +22,40 @@ namespace Sistema_de_planos.Controllers
             _context = context;
         }
 
-        // GET: api/Planoes
+        // GET: api/Planos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanos()
+        //[Route("{pageIndex?}/{pageSize?}")]
+        public async Task<ActionResult<ApiResult<PlanoModelGET>>> GetPlanos(
+            int pageIndex = 0, 
+            int pageSize = 10,
+            string sortColumn = null,
+            string sortOrder = null,
+            string filterColumn = null,
+            string filterQuery = null)
         {
-          if (_context.Planos == null)
-          {
-              return NotFound();
-          }
-            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Select(p => new PlanoModelGET
-            {
-                Id = p.Id,
-                NumPlano = p.NumPlano,
-                Propietario = p.Propietario,
-                Arancel = p.Arancel,
-                FechaOriginal = p.FechaOriginal,
-                EstadoDescripcion = p.Estado.Descripcion,
-                PartidoNombre = p.Partido.Nombre
-            }).
-                ToListAsync();
+            /*if(filterQuery == "null") {
+                filterQuery = null;
+            }*/
+            return await ApiResult<PlanoModelGET>.CreateAsync(
+                _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Select(p => new PlanoModelGET
+                {
+                    Id = p.Id,
+                    NumPlano = p.NumPlano,
+                    Propietario = p.Propietario,
+                    Arancel = p.Arancel,
+                    FechaOriginal = p.FechaOriginal,
+                    EstadoDescripcion = p.Estado.Descripcion,
+                    PartidoNombre = p.Partido.Nombre
+                }),
+                pageIndex,
+                pageSize,
+                sortColumn,
+                sortOrder,
+                filterColumn,
+                filterQuery
+                );
+
+
         }
 
         // GET: api/Planos/11 -- POR NUMERO DE PLANO
@@ -77,15 +92,15 @@ namespace Sistema_de_planos.Controllers
 
             return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Propietario.Contains(propietario))
                 .Select(p => new PlanoModelGET
-            {
-                Id = p.Id,
-                NumPlano = p.NumPlano,
-                Propietario = p.Propietario,
-                Arancel = p.Arancel,
-                FechaOriginal = p.FechaOriginal,
-                EstadoDescripcion = p.Estado.Descripcion,
-                PartidoNombre = p.Partido.Nombre
-            }).
+                {
+                    Id = p.Id,
+                    NumPlano = p.NumPlano,
+                    Propietario = p.Propietario,
+                    Arancel = p.Arancel,
+                    FechaOriginal = p.FechaOriginal,
+                    EstadoDescripcion = p.Estado.Descripcion,
+                    PartidoNombre = p.Partido.Nombre
+                }).
                 ToListAsync();
         }
 
@@ -98,7 +113,9 @@ namespace Sistema_de_planos.Controllers
                 return NotFound();
             }
 
-            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Partido.Nombre == partido)
+            return await _context.Planos.Include(p => p.Estado)
+                .Include(p => p.Partido)
+                .Where(p => p.Partido.Nombre == partido)
                 .Select(p => new PlanoModelGET
                 {
                     Id = p.Id,
@@ -108,8 +125,8 @@ namespace Sistema_de_planos.Controllers
                     FechaOriginal = p.FechaOriginal,
                     EstadoDescripcion = p.Estado.Descripcion,
                     PartidoNombre = p.Partido.Nombre
-                }).
-                ToListAsync();
+                })
+                .ToListAsync();
         }
 
         // GET: api/Planos/2 --POR PARTIDO ID
@@ -138,23 +155,27 @@ namespace Sistema_de_planos.Controllers
 
         // PUT: api/Planoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPlano(int id, Plano plano)
+        [HttpPut("id")]
+        public async Task<IActionResult> PutPlano(int id, PlanoModelPOST planoM)
         {
-            if (id != plano.Id)
+            Plano plano = new()
             {
-                return BadRequest();
-            }
-
+                Id = id,
+                NumPlano = planoM.NumPlano,
+                Propietario = planoM.Propietario,
+                Arancel = planoM.Arancel,
+                FechaOriginal = planoM.FechaOriginal,
+                EstadoId = (int)planoM.EstadoId,
+                PartidoId = (int)planoM.PartidoId
+            };
             _context.Entry(plano).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PlanoExists(id))
+                if (!PlanoExists(planoM.NumPlano))
                 {
                     return NotFound();
                 }
@@ -169,20 +190,23 @@ namespace Sistema_de_planos.Controllers
 
         // POST: api/Planoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPost]
         public async Task<ActionResult<Plano>> PostPlano(PlanoModelPOST planoM)
         {
-          if (_context.Planos == null)
-          {
-              return Problem("Entity set 'PlanosContext.Planos'  is null.");
-          }
-            Plano plano = new();
-            plano.NumPlano = planoM.NumPlano;
-            plano.Propietario = planoM.Propietario;
-            plano.Arancel = planoM.Arancel;
-            plano.FechaOriginal = planoM.FechaOriginal;
-            plano.EstadoId = (int) planoM.EstadoId;
-            plano.PartidoId = (int) planoM.PartidoId;
+            if (_context.Planos == null)
+            {
+                return Problem("Entity set 'PlanosContext.Planos'  is null.");
+            }
+            Plano plano = new()
+            {
+                NumPlano = planoM.NumPlano,
+                Propietario = planoM.Propietario,
+                Arancel = planoM.Arancel,
+                FechaOriginal = planoM.FechaOriginal,
+                EstadoId = (int)planoM.EstadoId,
+                PartidoId = (int)planoM.PartidoId
+            };
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();
 

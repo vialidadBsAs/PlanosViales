@@ -30,7 +30,7 @@ namespace Sistema_de_planos.Controllers
           {
               return NotFound();
           }
-            return await _context.Historicos.Include(h => h.Estado).Select(h => new HistoricoModelGET
+            return await _context.Historicos.Include(h => h.Plano).Include(h => h.Estado).Select(h => new HistoricoModelGET
             {
                 Id = h.Id,
                 Observacion = h.Observacion,
@@ -42,22 +42,27 @@ namespace Sistema_de_planos.Controllers
                 .ToListAsync();
         }
 
-        // GET: api/Historicos/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Historico>> GetHistorico(int id)
+        // GET: api/Historicos/5 -- POR NUMERO DE PLANO
+        [HttpGet("{numPlano}")]
+        public async Task<ActionResult<IEnumerable<HistoricoModelGET>>> GetHistorico(int numPlano)
         {
           if (_context.Historicos == null)
           {
               return NotFound();
           }
-            var historico = await _context.Historicos.FindAsync(id);
-
-            if (historico == null)
-            {
-                return NotFound();
-            }
-
-            return historico;
+            return await _context.Historicos.Include(h => h.Plano)
+                .Include(h => h.Estado)
+                .Where(h => h.Plano.NumPlano == numPlano)
+                .Select(h => new HistoricoModelGET
+                {
+                    Id = h.Id,
+                    Observacion = h.Observacion,
+                    FechaPresentacion = h.FechaPresentacion,
+                    FechaRetiro = h.FechaRetiro,
+                    NombreRetiro = h.NombreRetiro,
+                    EstadoDescripcion = h.Estado.Descripcion
+                })
+                .ToListAsync();
         }
 
         // PUT: api/Historicos/5
