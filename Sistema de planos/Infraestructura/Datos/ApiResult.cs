@@ -67,11 +67,21 @@ namespace Sistema_de_planos.Infraestructura.Datos
             && !string.IsNullOrEmpty(filterQuery)
             && IsValidProperty(filterColumn))
             {
-                source = source.Where(
-                string.Format("{0}.Contains(@0)",
-                filterColumn),
-                filterQuery);
+                if (filterColumn.Equals("propietario")){
+                    source = source.Where(
+                    string.Format("{0}.Contains(@0)",
+                    filterColumn),
+                    filterQuery);
+                }
+                else
+                {
+                    source = source.Where(
+                    string.Format("{0} == (@0)",
+                    filterColumn),
+                    filterQuery);
+                }
             }
+
 
             var count = await source.CountAsync();
             if (!string.IsNullOrEmpty(sortColumn)

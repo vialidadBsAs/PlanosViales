@@ -32,7 +32,7 @@ namespace Sistema_de_planos.Controllers
                 _context.Estados,
                 pageIndex,
                 pageSize,
-                "descripcion",
+                "codigo",
                 "asc",
                 "descripcion",
                 null

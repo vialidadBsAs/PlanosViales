@@ -36,6 +36,7 @@ namespace Sistema_de_planos.Controllers
             if(filterQuery == "null") {
                 filterQuery = null;
             }
+            
             return await ApiResult<PlanoModelGET>.CreateAsync(
                 _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Select(p => new PlanoModelGET
                 {
