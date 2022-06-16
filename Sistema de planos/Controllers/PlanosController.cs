@@ -46,7 +46,9 @@ namespace Sistema_de_planos.Controllers
                     Arancel = p.Arancel,
                     FechaOriginal = p.FechaOriginal,
                     EstadoDescripcion = p.Estado.Descripcion,
-                    PartidoNombre = p.Partido.Nombre
+                    PartidoNombre = p.Partido.Nombre,
+                    FechaRetiro = p.FechaRetiro,
+                    NombreRetiro = p.NombreRetiro
                 }),
                 pageIndex,
                 pageSize,
@@ -59,105 +61,10 @@ namespace Sistema_de_planos.Controllers
 
         }
 
-        // GET: api/Planos/11 -- POR NUMERO DE PLANO
-        [HttpGet("numPlano/{numPlano}")]
-        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanoNum(int numPlano)
-        {
-            if (_context.Planos == null)
-            {
-                return NotFound();
-            }
 
-            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.NumPlano == numPlano)
-                .Select(p => new PlanoModelGET
-                {
-                    Id = p.Id,
-                    NumPlano = p.NumPlano,
-                    Propietario = p.Propietario,
-                    Arancel = p.Arancel,
-                    FechaOriginal = p.FechaOriginal,
-                    EstadoDescripcion = p.Estado.Descripcion,
-                    PartidoNombre = p.Partido.Nombre
-                }).
-                ToListAsync();
-        }
-
-        // GET: api/Planos/Ezequiel --POR PROPIETARIO
-        [HttpGet("propietario/{propietario}")]
-        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanoProp(string propietario)
-        {
-            if (_context.Planos == null)
-            {
-                return NotFound();
-            }
-
-            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Propietario.Contains(propietario))
-                .Select(p => new PlanoModelGET
-                {
-                    Id = p.Id,
-                    NumPlano = p.NumPlano,
-                    Propietario = p.Propietario,
-                    Arancel = p.Arancel,
-                    FechaOriginal = p.FechaOriginal,
-                    EstadoDescripcion = p.Estado.Descripcion,
-                    PartidoNombre = p.Partido.Nombre
-                }).
-                ToListAsync();
-        }
-
-        // GET: api/Planos/Berazategui --POR NOMBRE DE PARTIDO
-        [HttpGet("partido/{partido}")]
-        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanoPartido(string partido)
-        {
-            if (_context.Planos == null)
-            {
-                return NotFound();
-            }
-
-            return await _context.Planos.Include(p => p.Estado)
-                .Include(p => p.Partido)
-                .Where(p => p.Partido.Nombre == partido)
-                .Select(p => new PlanoModelGET
-                {
-                    Id = p.Id,
-                    NumPlano = p.NumPlano,
-                    Propietario = p.Propietario,
-                    Arancel = p.Arancel,
-                    FechaOriginal = p.FechaOriginal,
-                    EstadoDescripcion = p.Estado.Descripcion,
-                    PartidoNombre = p.Partido.Nombre
-                })
-                .ToListAsync();
-        }
-
-        // GET: api/Planos/2 --POR PARTIDO ID
-        [HttpGet("partidoId/{partidoId}")]
-        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanoPartidoId(int partidoId)
-        {
-            if (_context.Planos == null)
-            {
-                return NotFound();
-            }
-
-            return await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.PartidoId == partidoId)
-                .Select(p => new PlanoModelGET
-                {
-                    Id = p.Id,
-                    NumPlano = p.NumPlano,
-                    Propietario = p.Propietario,
-                    Arancel = p.Arancel,
-                    FechaOriginal = p.FechaOriginal,
-                    EstadoDescripcion = p.Estado.Descripcion,
-                    PartidoNombre = p.Partido.Nombre
-                }).
-                ToListAsync();
-        }
-
-
-        // PUT: api/Planoes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("id")]
-        public async Task<IActionResult> PutPlano(int id, PlanoModelPOST planoM)
+        // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO Y EL NOMBRE
+        [HttpPatch]
+        public async Task<IActionResult> CambiarFechaRetiro(int id, PlanoModelPOST planoM)
         {
             Plano plano = new()
             {
@@ -167,29 +74,19 @@ namespace Sistema_de_planos.Controllers
                 Arancel = planoM.Arancel,
                 FechaOriginal = planoM.FechaOriginal,
                 EstadoId = (int)planoM.EstadoId,
-                PartidoId = (int)planoM.PartidoId
+                PartidoId = (int)planoM.PartidoId,
+                NombreRetiro = planoM.NombreRetiro,
+                FechaRetiro = planoM.FechaRetiro,
             };
-            _context.Entry(plano).State = EntityState.Modified;
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlanoExists(planoM.NumPlano))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            _context.Attach(plano);
+            _context.Entry(plano).Property(p => p.FechaRetiro).IsModified = true;
+            _context.Entry(plano).Property(p => p.NombreRetiro).IsModified = true;
+            _context.SaveChanges();
 
             return NoContent();
-        }
 
-        // POST: api/Planoes
+        }
+        // POST: api/Planos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         
         [HttpPost]
@@ -206,7 +103,9 @@ namespace Sistema_de_planos.Controllers
                 Arancel = planoM.Arancel,
                 FechaOriginal = planoM.FechaOriginal,
                 EstadoId = (int)planoM.EstadoId,
-                PartidoId = (int)planoM.PartidoId
+                PartidoId = (int)planoM.PartidoId,
+                NombreRetiro = planoM.NombreRetiro,
+                FechaRetiro = planoM.FechaRetiro,
             };
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();

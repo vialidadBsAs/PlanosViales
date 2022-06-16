@@ -9,5 +9,7 @@
         public DateTime FechaOriginal { get; set; }
         public string? EstadoDescripcion { get; set; }
         public string? PartidoNombre { get; set; }
+        public DateTime? FechaRetiro { get; set; }
+        public string? NombreRetiro { get; set; }
     }
 }
