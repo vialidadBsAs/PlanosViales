@@ -66,6 +66,7 @@ namespace Sistema_de_planos.Controllers
         [HttpPatch]
         public async Task<IActionResult> CambiarFechaRetiro(int id, PlanoModelPOST planoM)
         {
+            
             Plano plano = new()
             {
                 Id = id,
@@ -73,7 +74,7 @@ namespace Sistema_de_planos.Controllers
                 Propietario = planoM.Propietario,
                 Arancel = planoM.Arancel,
                 FechaOriginal = planoM.FechaOriginal,
-                EstadoId = (int)planoM.EstadoId,
+                EstadoId = 24,
                 PartidoId = (int)planoM.PartidoId,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
@@ -82,7 +83,7 @@ namespace Sistema_de_planos.Controllers
             _context.Entry(plano).Property(p => p.FechaRetiro).IsModified = true;
             _context.Entry(plano).Property(p => p.NombreRetiro).IsModified = true;
             _context.SaveChanges();
-
+            addHistorico(id);
             return NoContent();
 
         }
@@ -136,6 +137,24 @@ namespace Sistema_de_planos.Controllers
         private bool PlanoExists(int id)
         {
             return (_context.Planos?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+
+        private void addHistorico(int id)
+        {
+            Plano plano2 = _context.Planos.First(p => p.Id == id);
+            if(plano2 != null) {
+                _context.Historicos.Add(new Historico
+                {
+                    Observacion = " ",
+                    FechaPresentacion = plano2.FechaOriginal,
+                    FechaRetiro = plano2.FechaRetiro,
+                    NombreRetiro = plano2.NombreRetiro,
+                    PlanoId = id,
+                    EstadoId = 24
+                });
+            }
+            
         }
     }
 }

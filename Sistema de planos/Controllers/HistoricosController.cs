@@ -35,7 +35,7 @@ namespace Sistema_de_planos.Controllers
                 Id = h.Id,
                 Observacion = h.Observacion,
                 FechaPresentacion = h.FechaPresentacion,
-                FechaRetiro = h.FechaRetiro,    
+                FechaRetiro = (DateTime)h.FechaRetiro,    
                 NombreRetiro = h.NombreRetiro,
                 EstadoDescripcion = h.Estado.Descripcion
             })
@@ -58,7 +58,7 @@ namespace Sistema_de_planos.Controllers
                     Id = h.Id,
                     Observacion = h.Observacion,
                     FechaPresentacion = h.FechaPresentacion,
-                    FechaRetiro = h.FechaRetiro,
+                    FechaRetiro = (DateTime)h.FechaRetiro,
                     NombreRetiro = h.NombreRetiro,
                     EstadoDescripcion = h.Estado.Descripcion
                 })
