@@ -26,17 +26,17 @@ namespace Sistema_de_planos.Controllers
         [HttpGet]
         //[Route("{pageIndex?}/{pageSize?}")]
         public async Task<ActionResult<ApiResult<PlanoModelGET>>> GetPlanos(
-            int pageIndex = 0, 
+            int pageIndex = 0,
             int pageSize = 10,
             string sortColumn = null,
             string sortOrder = null,
             string filterColumn = null,
             string filterQuery = null)
         {
-            if(filterQuery == "null") {
+            if (filterQuery == "null") {
                 filterQuery = null;
             }
-            
+
             return await ApiResult<PlanoModelGET>.CreateAsync(
                 _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Select(p => new PlanoModelGET
                 {
@@ -48,8 +48,8 @@ namespace Sistema_de_planos.Controllers
                     EstadoDescripcion = p.Estado.Descripcion,
                     PartidoNombre = p.Partido.Nombre,
                     FechaRetiro = p.FechaRetiro,
-                    NombreRetiro = p.NombreRetiro
-                }),
+                    NombreRetiro = p.NombreRetiro,
+        }),
                 pageIndex,
                 pageSize,
                 sortColumn,
@@ -62,14 +62,11 @@ namespace Sistema_de_planos.Controllers
         }
 
 
-        // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO Y EL NOMBRE
+        // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO, EL NOMBRE Y EL ESTADO
         [HttpPatch]
         public async Task<IActionResult> CambiarFechaRetiro(int id, PlanoModelPOST planoM)
         {
             int estado = planoM.EstadoId;
-            if (estado.Equals(0)) {
-                estado = 24;
-            }
             Plano plano = new()
             {
                 Id = id,
@@ -91,9 +88,44 @@ namespace Sistema_de_planos.Controllers
             return NoContent();
 
         }
+
+        // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO Y EL NOMBRE
+        [HttpPatch]
+        [Route("/reingreso")]
+        public async Task<IActionResult> Reingreso(int id, PlanoModelPOST planoM)
+        {
+            Plano plano = _context.Planos.First(p => p.Id == id);
+
+            Historico historico = new()
+            {
+                Observacion = "",
+                FechaPresentacion = plano.FechaOriginal,
+                NombreRetiro = plano.NombreRetiro,
+                FechaRetiro = plano.FechaRetiro,
+                EstadoId = plano.EstadoId
+            };
+
+            plano.Historicos.Add(historico);
+
+            plano.EstadoId = 25;
+            plano.FechaRetiro = null;
+            plano.NombreRetiro = null;
+            plano.FechaOriginal = DateTime.Now;
+
+           
+
+            _context.Attach(plano);
+            _context.Entry(plano).Property(p => p.FechaRetiro).IsModified = true;
+            _context.Entry(plano).Property(p => p.NombreRetiro).IsModified = true;
+            _context.Entry(plano).Property(p => p.FechaOriginal).IsModified = true;
+            _context.Entry(plano).Property(p => p.EstadoId).IsModified = true;
+            _context.SaveChanges();
+            return NoContent();
+
+        }
         // POST: api/Planos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        
+
         [HttpPost]
         public async Task<ActionResult<Plano>> PostPlano(PlanoModelPOST planoM)
         {
@@ -101,6 +133,7 @@ namespace Sistema_de_planos.Controllers
             {
                 return Problem("Entity set 'PlanosContext.Planos'  is null.");
             }
+
             Plano plano = new()
             {
                 NumPlano = planoM.NumPlano,
@@ -111,6 +144,7 @@ namespace Sistema_de_planos.Controllers
                 PartidoId = (int)planoM.PartidoId,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
+                Historicos = new List<Historico>()
             };
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();

@@ -101,17 +101,16 @@ namespace Sistema_de_planos.Controllers
         [HttpPost]
         public async Task<ActionResult<Historico>> PostHistorico(HistoricoModelPOST historicoM)
         {
-          if (_context.Historicos == null)
-          {
-              return Problem("Entity set 'PlanosContext.Historicos'  is null.");
-          }
-            Historico historico = new();
-            historico.Observacion = historicoM.Observacion;
-            historico.FechaPresentacion = DateTime.Now;
-            historico.NombreRetiro = historicoM.NombreRetiro;
-            historico.FechaRetiro = historicoM.FechaRetiro;
-            historico.PlanoId = historicoM.PlanoId;
-            historico.EstadoId = historicoM.EstadoId;
+            Plano plano = _context.Planos.First(p => p.Id == historicoM.planoId);
+            Historico historico = new()
+            {
+                Observacion = historicoM.Observacion,
+                FechaPresentacion = plano.FechaOriginal,
+                NombreRetiro = plano.NombreRetiro,
+                FechaRetiro = plano.FechaRetiro,
+                PlanoId = plano.Id,
+                EstadoId = plano.EstadoId
+            };
 
 
             _context.Historicos.Add(historico);
