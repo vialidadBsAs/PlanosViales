@@ -117,6 +117,14 @@ namespace Sistema_de_planos.Controllers
             return CreatedAtAction("GetEstado", new { id = estado.Id }, estado);
         }
 
+        [HttpPost]
+        [Route("IsDupeEstado")]
+        public bool IsDupeEstado(Estado estado)
+        {
+            return _context.Estados.Any(
+                e => e.Codigo == estado.Codigo && e.Descripcion == estado.Descripcion && e.Id != estado.Id);
+        }
+
         // DELETE: api/Estados/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEstado(int id)

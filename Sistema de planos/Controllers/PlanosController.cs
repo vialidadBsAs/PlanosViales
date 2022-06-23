@@ -63,7 +63,7 @@ namespace Sistema_de_planos.Controllers
 
 
         // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO, EL NOMBRE Y EL ESTADO
-        [HttpPatch]
+        [HttpPut]
         public async Task<IActionResult> CambiarFechaRetiro(int id, PlanoModelPOST planoM)
         {
             int estado = planoM.EstadoId;
@@ -90,7 +90,7 @@ namespace Sistema_de_planos.Controllers
         }
 
         // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO Y EL NOMBRE
-        [HttpPatch]
+        [HttpPut]
         [Route("/reingreso")]
         public async Task<IActionResult> Reingreso(int id, PlanoModelPOST planoM)
         {
@@ -107,7 +107,7 @@ namespace Sistema_de_planos.Controllers
 
             plano.Historicos.Add(historico);
 
-            plano.EstadoId = 25;
+            plano.EstadoId = 25; // EL 25 ES EL REINGRESADO
             plano.FechaRetiro = null;
             plano.NombreRetiro = null;
             plano.FechaOriginal = DateTime.Now;
