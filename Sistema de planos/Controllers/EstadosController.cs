@@ -123,6 +123,7 @@ namespace Sistema_de_planos.Controllers
         {
             return _context.Estados.Any(
                 e => e.Codigo == estado.Codigo && e.Descripcion == estado.Descripcion && e.Id != estado.Id);
+
         }
 
         // DELETE: api/Estados/5
