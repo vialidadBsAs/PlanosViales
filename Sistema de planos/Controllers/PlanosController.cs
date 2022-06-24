@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,21 +62,54 @@ namespace Sistema_de_planos.Controllers
 
         }
 
+        // GET: api/Planos/1
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PlanoModelGET>> GetPlanos(int id)
+        {
+            if (_context.Planos == null)
+            {
+                return NotFound();
+            }
+            var p = await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Id == id).FirstOrDefaultAsync();
+            PlanoModelGET plano;
+
+            if (p == null)
+            {
+                return NotFound();
+            } else
+            {
+                plano = new()
+                {
+                    Id = p.Id,
+                    NumPlano = p.NumPlano,
+                    Propietario = p.Propietario,
+                    Arancel = p.Arancel,
+                    FechaOriginal = p.FechaOriginal,
+                    EstadoDescripcion = p.Estado.Descripcion,
+                    PartidoNombre = p.Partido.Nombre,
+                    FechaRetiro = p.FechaRetiro,
+                    NombreRetiro = p.NombreRetiro,
+                };
+            }
+
+            return plano;
+
+        }
+
 
         // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO, EL NOMBRE Y EL ESTADO
         [HttpPut]
         public async Task<IActionResult> CambiarFechaRetiro(int id, PlanoModelPOST planoM)
         {
-            int estado = planoM.EstadoId;
             Plano plano = new()
             {
                 Id = id,
-                NumPlano = planoM.NumPlano,
-                Propietario = planoM.Propietario,
-                Arancel = planoM.Arancel,
-                FechaOriginal = planoM.FechaOriginal,
-                EstadoId = estado,
-                PartidoId = (int)planoM.PartidoId,
+                NumPlano = 0,
+                Propietario = "",
+                Arancel = 0,
+                FechaOriginal = DateTime.Now,
+                EstadoId = planoM.EstadoId,
+                PartidoId = 0,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
             };
@@ -177,23 +211,12 @@ namespace Sistema_de_planos.Controllers
             return (_context.Planos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-
-        private void AddHistorico(int id)
+        [HttpPost]
+        [Route("IsDupeField")]
+        public bool IsDupeField(PlanoModelGET plano)
         {
-            Plano plano2 = _context.Planos.First(p => p.Id == id);
-            if(plano2 != null) {
-                _context.Historicos.Add(new Historico
-                {
-                    Observacion = " ",
-                    FechaPresentacion = plano2.FechaOriginal,
-                    FechaRetiro = plano2.FechaRetiro,
-                    NombreRetiro = plano2.NombreRetiro,
-                    PlanoId = id,
-                    EstadoId = 24
-                });
-                _context.SaveChanges();
-            }
-            
+            return _context.Planos.Any(
+                e => e.NumPlano == plano.NumPlano && e.Id != plano.Id);
         }
     }
 }
