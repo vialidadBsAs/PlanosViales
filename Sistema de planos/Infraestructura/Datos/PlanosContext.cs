@@ -1,17 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.Extensions.Options;
+using Sistema_de_planos.Models;
+using Duende.IdentityServer.EntityFramework.Options;
 
 namespace Sistema_de_planos.Infraestructura.Datos
 {
-    public partial class PlanosContext : DbContext
+    public partial class PlanosContext : DbContext //ApiAuthorizationDbContext<User>
     {
         public DbSet<Dominio.Entidades.Estado> Estados { get; set; }
         public DbSet<Dominio.Entidades.Partido> Partidos { get; set; }
         public DbSet<Dominio.Entidades.Historico> Historicos { get; set; }
         public DbSet<Dominio.Entidades.Plano> Planos { get; set; }
 
+        //public PlanosContext() { 
+        //}
+
+        //public PlanosContext(DbContextOptions<PlanosContext> options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+        //    : base(options, operationalStoreOptions)
+        //{
+        //}
         public PlanosContext()
         {
 
