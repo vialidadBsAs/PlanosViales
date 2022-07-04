@@ -59,7 +59,7 @@ namespace Sistema_de_planos.Controllers
                     Observacion = h.Observacion,
                     FechaPresentacion = h.FechaPresentacion,
                     FechaRetiro = (DateTime)h.FechaRetiro,
-                    NombreRetiro = h.NombreRetiro,
+                    NombreRetiro = h.NombreRetiro != null ? h.NombreRetiro : "",
                     EstadoDescripcion = h.Estado.Descripcion
                 })
                 .ToListAsync();

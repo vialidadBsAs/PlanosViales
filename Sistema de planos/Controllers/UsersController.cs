@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sistema_de_planos.Dominio.Entidades;
 using Sistema_de_planos.Infraestructura.Datos;
+using Sistema_de_planos.Models;
 
 namespace Sistema_de_planos.Controllers
 {
@@ -124,11 +125,23 @@ namespace Sistema_de_planos.Controllers
 
         [HttpGet]
         [Route("Login")]
-        public bool Login(string username, string password)
+        public ActionResult<UserModelGET> Login(string username, string password)
         {
 
-            return _context.Usuario.Any(u => u.Username == username && u.Password == password);
-
+            var exists = _context.Usuario.Any(u => u.Username == username && u.Password == password);
+            if (exists)
+            {
+                var user = _context.Usuario.First(u => u.Username == username && u.Password == password);
+                return new UserModelGET
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                };
+            }
+            else
+            {
+                return BadRequest("El usuario o contraseña ingresados son incorrectos.");
+            }
         }
     }
 }

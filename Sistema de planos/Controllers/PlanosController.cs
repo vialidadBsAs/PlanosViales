@@ -105,11 +105,11 @@ namespace Sistema_de_planos.Controllers
             {
                 Id = id,
                 NumPlano = 0,
-                Propietario = "",
-                Arancel = 0,
-                FechaOriginal = DateTime.Now,
+                Propietario = planoM.Propietario,
+                Arancel = planoM.Arancel,
+                FechaOriginal = planoM.FechaOriginal != null ? planoM.FechaOriginal : DateTime.Now,
                 EstadoId = planoM.EstadoId,
-                PartidoId = 0,
+                PartidoId = planoM.PartidoId,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
             };
@@ -117,7 +117,10 @@ namespace Sistema_de_planos.Controllers
             _context.Attach(plano);
             _context.Entry(plano).Property(p => p.FechaRetiro).IsModified = true;
             _context.Entry(plano).Property(p => p.NombreRetiro).IsModified = true;
-            _context.Entry(plano).Property(p => p.EstadoId).IsModified = true;
+            if(planoM.EstadoId != 0) _context.Entry(plano).Property(p => p.EstadoId).IsModified = true;
+            if (planoM.PartidoId != 0) _context.Entry(plano).Property(p => p.PartidoId).IsModified = true;
+            if (planoM.Propietario != "") _context.Entry(plano).Property(p => p.Propietario).IsModified = true;
+            if (planoM.Arancel != 0) _context.Entry(plano).Property(p => p.Arancel).IsModified = true;
             _context.SaveChanges();
             return NoContent();
 
@@ -129,12 +132,13 @@ namespace Sistema_de_planos.Controllers
         public async Task<IActionResult> Reingreso(int id, PlanoModelPOST planoM)
         {
             Plano plano = _context.Planos.First(p => p.Id == id);
+            if (plano.NombreRetiro == null | plano.FechaRetiro == null) return BadRequest("Necesita haber un retiro para reingresar.");
 
             Historico historico = new()
             {
                 Observacion = "",
                 FechaPresentacion = plano.FechaOriginal,
-                NombreRetiro = plano.NombreRetiro,
+                NombreRetiro = plano.NombreRetiro != "" ? plano.NombreRetiro : "",
                 FechaRetiro = plano.FechaRetiro,
                 EstadoId = plano.EstadoId
             };
@@ -183,7 +187,7 @@ namespace Sistema_de_planos.Controllers
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPlano", new { id = plano.Id }, plano);
+            return CreatedAtAction("GetPlanos", new { id = plano.Id }, plano);
         }
 
         // DELETE: api/Planoes/5
@@ -217,6 +221,13 @@ namespace Sistema_de_planos.Controllers
         {
             return _context.Planos.Any(
                 e => e.NumPlano == plano.NumPlano && e.Id != plano.Id);
+        }
+
+        [HttpGet("lastPlanoNumber")]
+        public async Task<int> GetLastNroPlano()
+        {
+            int table_size = _context.Planos.CountAsync().Result;
+            return table_size;
         }
     }
 }
