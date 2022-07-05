@@ -223,11 +223,22 @@ namespace Sistema_de_planos.Controllers
                 e => e.NumPlano == plano.NumPlano && e.Id != plano.Id);
         }
 
+
         [HttpGet("lastPlanoNumber")]
         public async Task<int> GetLastNroPlano()
         {
             int table_size = _context.Planos.CountAsync().Result;
             return table_size;
         }
+
+        [HttpPost]
+        [Route("IsValidDate")]
+        public bool IsValidDate(PlanoModelGET plano)
+        {
+            int res = DateTime.Compare(plano.FechaOriginal, DateTime.Today);
+            return res <= 0;
+
+        }
+
     }
 }
