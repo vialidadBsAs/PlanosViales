@@ -124,5 +124,8 @@ namespace Sistema_de_planos.Controllers
         {
             return (_context.Partidos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        
+
     }
 }

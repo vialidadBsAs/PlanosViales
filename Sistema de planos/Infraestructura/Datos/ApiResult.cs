@@ -67,7 +67,8 @@ namespace Sistema_de_planos.Infraestructura.Datos
             && !string.IsNullOrEmpty(filterQuery)
             && IsValidProperty(filterColumn))
             {
-                if (filterColumn.Equals("propietario")){
+                if (filterColumn.Equals("propietario") || filterColumn.Equals("estadoDescripcion"))
+                {
                     source = source.Where(
                     string.Format("{0}.Contains(@0)",
                     filterColumn),

@@ -24,7 +24,7 @@ namespace Sistema_de_planos.Infraestructura.Datos
         //}
         public PlanosContext()
         {
-
+            
         }
 
         public PlanosContext(DbContextOptions<PlanosContext> options)
@@ -44,7 +44,10 @@ namespace Sistema_de_planos.Infraestructura.Datos
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             OnModelCreatingPartial(modelBuilder);
+            
         }
+
+
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

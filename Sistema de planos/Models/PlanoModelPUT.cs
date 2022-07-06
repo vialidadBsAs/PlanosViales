@@ -10,5 +10,6 @@
         public int PartidoId { get; set; }
         public DateTime? FechaRetiro { get; set; }
         public string? NombreRetiro { get; set; }
+        public string Tipo { get; set; }
     }
 }

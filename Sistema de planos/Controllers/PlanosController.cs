@@ -50,6 +50,7 @@ namespace Sistema_de_planos.Controllers
                     PartidoNombre = p.Partido.Nombre,
                     FechaRetiro = p.FechaRetiro,
                     NombreRetiro = p.NombreRetiro,
+                    Tipo = p.Tipo
         }),
                 pageIndex,
                 pageSize,
@@ -89,6 +90,7 @@ namespace Sistema_de_planos.Controllers
                     PartidoNombre = p.Partido.Nombre,
                     FechaRetiro = p.FechaRetiro,
                     NombreRetiro = p.NombreRetiro,
+                    Tipo = p.Tipo
                 };
             }
 
@@ -112,15 +114,17 @@ namespace Sistema_de_planos.Controllers
                 PartidoId = planoM.PartidoId,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
+                Tipo = planoM.Tipo
             };
 
             _context.Attach(plano);
-            _context.Entry(plano).Property(p => p.FechaRetiro).IsModified = true;
-            _context.Entry(plano).Property(p => p.NombreRetiro).IsModified = true;
+            if (planoM.FechaRetiro != null) _context.Entry(plano).Property(p => p.FechaRetiro).IsModified = true;
+            if (planoM.NombreRetiro != null) _context.Entry(plano).Property(p => p.NombreRetiro).IsModified = true;
             if(planoM.EstadoId != 0) _context.Entry(plano).Property(p => p.EstadoId).IsModified = true;
             if (planoM.PartidoId != 0) _context.Entry(plano).Property(p => p.PartidoId).IsModified = true;
             if (planoM.Propietario != "") _context.Entry(plano).Property(p => p.Propietario).IsModified = true;
             if (planoM.Arancel != 0) _context.Entry(plano).Property(p => p.Arancel).IsModified = true;
+            if (planoM.Tipo != "") _context.Entry(plano).Property(p => p.Tipo).IsModified = true;
             _context.SaveChanges();
             return NoContent();
 
@@ -182,7 +186,8 @@ namespace Sistema_de_planos.Controllers
                 PartidoId = (int)planoM.PartidoId,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
-                Historicos = new List<Historico>()
+                Historicos = new List<Historico>(),
+                Tipo = planoM.Tipo
             };
             _context.Planos.Add(plano);
             await _context.SaveChangesAsync();
@@ -230,6 +235,23 @@ namespace Sistema_de_planos.Controllers
             int table_size = _context.Planos.CountAsync().Result;
             return table_size;
         }
+
+        /*[HttpGet("partidosStats")]
+       public async Task<List<int>> GetPartidosStats()
+       {
+           if (_context.Planos == null)
+           {
+               return null;
+           }
+           var sql = "SELECT count(p.numPlano) FROM Planos p INNER JOIN Partidos par ON p.PartidoId = par.Id GROUP BY par.Id";
+           object[] myParams = { 1 };
+           var cntQuery = _context.ExecuteStoreQuery<int>(sql, myParams);
+          var query = (from p in _context.Planos
+                        join pa in _context.Partidos on p.PartidoId equals pa.Id
+                        select new { p.NumPlano, pa.Id } into q
+                        group q by q.Id).Count();
+           return cntQuery.ToList();
+       }*/
 
         [HttpPost]
         [Route("IsValidDate")]
