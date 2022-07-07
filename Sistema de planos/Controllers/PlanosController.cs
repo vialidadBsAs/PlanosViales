@@ -236,22 +236,25 @@ namespace Sistema_de_planos.Controllers
             return table_size;
         }
 
-        /*[HttpGet("partidosStats")]
-       public async Task<List<int>> GetPartidosStats()
+        [HttpGet("estadosStats")]
+       public async Task<ActionResult<IEnumerable<EstadoModelSTATS>>> GetEstadosStats(DateTime d1, DateTime d2)
        {
            if (_context.Planos == null)
            {
                return null;
            }
-           var sql = "SELECT count(p.numPlano) FROM Planos p INNER JOIN Partidos par ON p.PartidoId = par.Id GROUP BY par.Id";
-           object[] myParams = { 1 };
-           var cntQuery = _context.ExecuteStoreQuery<int>(sql, myParams);
-          var query = (from p in _context.Planos
-                        join pa in _context.Partidos on p.PartidoId equals pa.Id
-                        select new { p.NumPlano, pa.Id } into q
-                        group q by q.Id).Count();
-           return cntQuery.ToList();
-       }*/
+
+            var sql = (from p in _context.Planos
+                       where p.FechaOriginal > d1 && p.FechaOriginal < d2
+                       orderby p.EstadoId
+                       group p by p.EstadoId into estados
+                       select new EstadoModelSTATS
+                       {
+                           Id = estados.Key,
+                           Cant = estados.Count()
+                       }).ToListAsync();
+            return await sql;
+       }
 
         [HttpPost]
         [Route("IsValidDate")]
