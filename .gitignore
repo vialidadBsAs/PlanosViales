@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+PlanosContext.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
