@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sistema_de_planos.Dominio.Entidades;
 using Sistema_de_planos.Infraestructura.Datos;
+using Sistema_de_planos.Models.Arancel;
 
 namespace Sistema_de_planos.Controllers
 {
@@ -84,16 +85,22 @@ namespace Sistema_de_planos.Controllers
         // POST: api/Aranceles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Arancel>> PostArancel(Arancel arancel)
+        public async Task<ActionResult<Arancel>> PostArancel( ArancelPOST arancel)
         {
           if (_context.Arancel == null)
           {
               return Problem("Entity set 'PlanosContext.Arancel'  is null.");
           }
-            _context.Arancel.Add(arancel);
+          if ( arancel.ArancelValue < 0 )
+            {
+                return BadRequest("El valor del arancel debe ser mayor a 0.");
+            }
+            Arancel arancelToAdd = new Arancel();
+            arancelToAdd.Valor = arancel.ArancelValue;
+            _context.Arancel.Add(arancelToAdd);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetArancel", new { id = arancel.Id }, arancel);
+            return CreatedAtAction("GetArancel", new { id = arancelToAdd.Id }, arancelToAdd);
         }
 
         // DELETE: api/Aranceles/5
