@@ -244,6 +244,21 @@ namespace Sistema_de_planos.Controllers
                return null;
            }
 
+           if(d1 == null || d2 == null)
+            {
+                return BadRequest("Debes ingresar una fecha para ver las estadisticas.");
+            }
+
+            if (d1 > DateTime.Today || d2 > DateTime.Today)
+            {
+                return BadRequest("No se pueden obtener estadisticas de una fecha posterior a hoy.");
+            }
+
+            if (d1 > d2)
+            {
+                return BadRequest("Ingreso de fechas inválido. Recorda que la fecha de inicio nunca puede ser posterior a la fecha de fin.");
+            }
+
             var sql = (from p in _context.Planos
                        where p.FechaOriginal > d1 && p.FechaOriginal < d2
                        orderby p.EstadoId
@@ -251,8 +266,13 @@ namespace Sistema_de_planos.Controllers
                        select new EstadoModelSTATS
                        {
                            Id = estados.Key,
-                           Cant = estados.Count()
+                           Cant = estados.Count(),
+                           TotalArancel = (from p in _context.Planos
+                                           join e in _context.Estados on p.EstadoId equals e.Id
+                                           where e.Id == estados.Key && (p.FechaOriginal > d1 && p.FechaOriginal < d2)
+                                           select p.Arancel).Sum()
                        }).ToListAsync();
+
             return await sql;
        }
 
@@ -262,7 +282,6 @@ namespace Sistema_de_planos.Controllers
         {
             int res = DateTime.Compare(plano.FechaOriginal, DateTime.Today);
             return res <= 0;
-
         }
 
     }
