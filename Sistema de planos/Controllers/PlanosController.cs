@@ -236,22 +236,45 @@ namespace Sistema_de_planos.Controllers
             return table_size;
         }
 
-        /*[HttpGet("partidosStats")]
-       public async Task<List<int>> GetPartidosStats()
+        [HttpGet("estadosStats")]
+       public async Task<ActionResult<IEnumerable<EstadoModelSTATS>>> GetEstadosStats(DateTime d1, DateTime d2)
        {
            if (_context.Planos == null)
            {
                return null;
            }
-           var sql = "SELECT count(p.numPlano) FROM Planos p INNER JOIN Partidos par ON p.PartidoId = par.Id GROUP BY par.Id";
-           object[] myParams = { 1 };
-           var cntQuery = _context.ExecuteStoreQuery<int>(sql, myParams);
-          var query = (from p in _context.Planos
-                        join pa in _context.Partidos on p.PartidoId equals pa.Id
-                        select new { p.NumPlano, pa.Id } into q
-                        group q by q.Id).Count();
-           return cntQuery.ToList();
-       }*/
+
+           if(d1 == null || d2 == null)
+            {
+                return BadRequest("Debes ingresar una fecha para ver las estadisticas.");
+            }
+
+            if (d1 > DateTime.Today || d2 > DateTime.Today)
+            {
+                return BadRequest("No se pueden obtener estadisticas de una fecha posterior a hoy.");
+            }
+
+            if (d1 > d2)
+            {
+                return BadRequest("Ingreso de fechas inválido. Recorda que la fecha de inicio nunca puede ser posterior a la fecha de fin.");
+            }
+
+            var sql = (from p in _context.Planos
+                       where p.FechaOriginal > d1 && p.FechaOriginal < d2
+                       orderby p.EstadoId
+                       group p by p.EstadoId into estados
+                       select new EstadoModelSTATS
+                       {
+                           Id = estados.Key,
+                           Cant = estados.Count(),
+                           TotalArancel = (from p in _context.Planos
+                                           join e in _context.Estados on p.EstadoId equals e.Id
+                                           where e.Id == estados.Key && (p.FechaOriginal > d1 && p.FechaOriginal < d2)
+                                           select p.Arancel).Sum()
+                       }).ToListAsync();
+
+            return await sql;
+       }
 
         [HttpPost]
         [Route("IsValidDate")]
@@ -259,7 +282,6 @@ namespace Sistema_de_planos.Controllers
         {
             int res = DateTime.Compare(plano.FechaOriginal, DateTime.Today);
             return res <= 0;
-
         }
 
     }
