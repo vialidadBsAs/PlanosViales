@@ -8,7 +8,7 @@
         public double Arancel { get; set; }
         public DateTime FechaOriginal { get; set; }
         public int EstadoId { get; set; }
-        public int PartidoId { get; set; }
+        public int? PartidoId { get; set; }
         public string? Tipo { get; set; }
         public Estado Estado { get; set; }
         public Partido Partido { get; set; }
