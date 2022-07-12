@@ -232,7 +232,7 @@ namespace Sistema_de_planos.Controllers
         [HttpGet("lastPlanoNumber")]
         public async Task<int> GetLastNroPlano()
         {
-            int table_size = _context.Planos.CountAsync().Result;
+            int table_size = _context.Planos.CountAsync().Result + 2000;
             return table_size;
         }
 
