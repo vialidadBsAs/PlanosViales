@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sistema_de_planos.Infraestructura.Datos;
 
@@ -11,9 +12,10 @@ using Sistema_de_planos.Infraestructura.Datos;
 namespace Sistema_de_planos.Migrations
 {
     [DbContext(typeof(PlanosContext))]
-    partial class PlanosContextModelSnapshot : ModelSnapshot
+    [Migration("20220712133407_elimineHistoricos")]
+    partial class elimineHistoricos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,10 +116,9 @@ namespace Sistema_de_planos.Migrations
                     b.Property<int?>("ZonaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ZonaNro")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ZonaId");
 
                     b.ToTable("Partidos");
                 });
@@ -225,6 +226,15 @@ namespace Sistema_de_planos.Migrations
                     b.Navigation("Estado");
 
                     b.Navigation("Plano");
+                });
+
+            modelBuilder.Entity("Sistema_de_planos.Dominio.Entidades.Partido", b =>
+                {
+                    b.HasOne("Sistema_de_planos.Dominio.Entidades.Zona", "Zona")
+                        .WithMany()
+                        .HasForeignKey("ZonaId");
+
+                    b.Navigation("Zona");
                 });
 
             modelBuilder.Entity("Sistema_de_planos.Dominio.Entidades.Plano", b =>

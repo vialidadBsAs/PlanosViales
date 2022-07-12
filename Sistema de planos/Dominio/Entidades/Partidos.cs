@@ -6,6 +6,6 @@
         public string Nombre { get; set; } = string.Empty;
         public string Codigo { get; set; } = string.Empty;
         public int? ZonaId { get; set; }
-        public Zona? Zona { get; set; }
+        public int? ZonaNro { get; set; }
     }
 }

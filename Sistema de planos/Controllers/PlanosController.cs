@@ -260,7 +260,7 @@ namespace Sistema_de_planos.Controllers
             }
 
             var sql = (from p in _context.Planos
-                       where p.FechaOriginal > d1 && p.FechaOriginal < d2
+                       where p.FechaOriginal >= d1 && p.FechaOriginal <= d2
                        orderby p.EstadoId
                        group p by p.EstadoId into estados
                        select new EstadoModelSTATS
@@ -269,7 +269,7 @@ namespace Sistema_de_planos.Controllers
                            Cant = estados.Count(),
                            TotalArancel = (from p in _context.Planos
                                            join e in _context.Estados on p.EstadoId equals e.Id
-                                           where e.Id == estados.Key && (p.FechaOriginal > d1 && p.FechaOriginal < d2)
+                                           where e.Id == estados.Key && (p.FechaOriginal >= d1 && p.FechaOriginal <= d2)
                                            select p.Arancel).Sum()
                        }).ToListAsync();
 
