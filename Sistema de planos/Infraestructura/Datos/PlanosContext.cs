@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.Extensions.Options;
 using Sistema_de_planos.Models;
@@ -14,7 +15,6 @@ namespace Sistema_de_planos.Infraestructura.Datos
         public DbSet<Dominio.Entidades.Plano> Planos { get; set; }
         public DbSet<Dominio.Entidades.User> Usuario { get; set; }
         public DbSet<Dominio.Entidades.Arancel> Arancel { get; set; }
-
         public DbSet<Dominio.Entidades.Zona> Zonas { get; set; }
 
         //public PlanosContext() { 
@@ -39,7 +39,7 @@ namespace Sistema_de_planos.Infraestructura.Datos
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=SI-DESARROLLO45\\SQLEXPRESS; Database=Planos; Integrated Security=true; Multiple Active Result Sets=true;");
+                optionsBuilder.UseSqlServer("Server=SI-SOPORTE22\\SQLEXPRESS; Database=Planos; Integrated Security=true; Multiple Active Result Sets=true;");
             }
         }
 
