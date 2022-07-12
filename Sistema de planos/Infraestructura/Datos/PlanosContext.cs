@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.Extensions.Options;
 using Sistema_de_planos.Models;
@@ -14,7 +15,6 @@ namespace Sistema_de_planos.Infraestructura.Datos
         public DbSet<Dominio.Entidades.Plano> Planos { get; set; }
         public DbSet<Dominio.Entidades.User> Usuario { get; set; }
         public DbSet<Dominio.Entidades.Arancel> Arancel { get; set; }
-
         public DbSet<Dominio.Entidades.Zona> Zonas { get; set; }
 
         //public PlanosContext() { 
