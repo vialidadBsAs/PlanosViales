@@ -232,7 +232,27 @@ namespace Sistema_de_planos.Controllers
         [HttpGet("lastPlanoNumber")]
         public async Task<int> GetLastNroPlano()
         {
-            int table_size = _context.Planos.CountAsync().Result + 2000;
+            int table_size;
+            
+            try
+            {
+                LastPlanoNumber actualRow = _context.LastPlanoNumber.First();               
+                //_context.LastPlanoNumber.Attach(actualRow);
+                _context.Entry(actualRow).State = EntityState.Modified;
+                actualRow.LastNroPlano = actualRow.LastNroPlano + 1;
+                table_size = actualRow.LastNroPlano;
+
+            }
+            catch (InvalidOperationException) // En caso que la fila aun no exista, se levanta la excepcion
+            {
+                table_size = _context.Planos.CountAsync().Result + 2003;
+                LastPlanoNumber createRow = new LastPlanoNumber
+                {
+                    LastNroPlano = table_size
+                };
+            _context.LastPlanoNumber.Add(createRow);
+            }
+            await _context.SaveChangesAsync();
             return table_size;
         }
 
