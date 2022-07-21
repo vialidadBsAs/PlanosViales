@@ -12,5 +12,6 @@
         public DateTime? FechaRetiro { get; set; }
         public string Tipo { get; set; }
         public string? NombreRetiro { get; set; }
+        public Boolean TieneHistoricos { get; set; }
     }
 }
