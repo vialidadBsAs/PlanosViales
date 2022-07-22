@@ -48,6 +48,7 @@ namespace Sistema_de_planos.Controllers
                     FechaOriginal = p.FechaOriginal,
                     EstadoDescripcion = p.Estado.Descripcion,
                     PartidoNombre = p.Partido.Nombre,
+                    PartidoInmobiliario = p.PartidoInmobiliario,
                     FechaRetiro = p.FechaRetiro,
                     NombreRetiro = p.NombreRetiro,
                     Tipo = p.Tipo,
@@ -89,6 +90,7 @@ namespace Sistema_de_planos.Controllers
                     FechaOriginal = p.FechaOriginal,
                     EstadoDescripcion = p.Estado.Descripcion,
                     PartidoNombre = p.Partido.Nombre,
+                    PartidoInmobiliario = p.PartidoInmobiliario,
                     FechaRetiro = p.FechaRetiro,
                     NombreRetiro = p.NombreRetiro,
                     Tipo = p.Tipo
@@ -113,6 +115,7 @@ namespace Sistema_de_planos.Controllers
                 FechaOriginal = planoM.FechaOriginal != null ? planoM.FechaOriginal : DateTime.Now,
                 EstadoId = planoM.EstadoId,
                 PartidoId = planoM.PartidoId,
+                PartidoInmobiliario = planoM.PartidoInmobiliario,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
                 Tipo = planoM.Tipo
@@ -126,6 +129,7 @@ namespace Sistema_de_planos.Controllers
             if (planoM.Propietario != "") _context.Entry(plano).Property(p => p.Propietario).IsModified = true;
             if (planoM.Arancel != 0) _context.Entry(plano).Property(p => p.Arancel).IsModified = true;
             if (planoM.Tipo != "") _context.Entry(plano).Property(p => p.Tipo).IsModified = true;
+            if (planoM.PartidoInmobiliario != null) _context.Entry(plano).Property(p => p.PartidoInmobiliario).IsModified = true;
             _context.SaveChanges();
             return NoContent();
 
@@ -186,6 +190,7 @@ namespace Sistema_de_planos.Controllers
                 EstadoId = (int)planoM.EstadoId,
                 PartidoId = (int)planoM.PartidoId,
                 NombreRetiro = planoM.NombreRetiro,
+                PartidoInmobiliario = planoM.PartidoInmobiliario,
                 FechaRetiro = planoM.FechaRetiro,
                 Historicos = new List<Historico>(),
                 Tipo = planoM.Tipo
