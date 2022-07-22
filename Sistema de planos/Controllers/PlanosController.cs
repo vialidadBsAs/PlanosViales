@@ -52,7 +52,8 @@ namespace Sistema_de_planos.Controllers
                     FechaRetiro = p.FechaRetiro,
                     NombreRetiro = p.NombreRetiro,
                     Tipo = p.Tipo,
-                    TieneHistoricos = p.Historicos.Count() != 0
+                    TieneHistoricos = p.Historicos.Count() != 0,
+                    PartidoId = (int)p.PartidoId
         }),
                 pageIndex,
                 pageSize,
