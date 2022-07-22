@@ -8,7 +8,7 @@
         public double Arancel { get; set; }
         public int EstadoId { get; set; }
         public int PartidoId { get; set; }
-        public string PartidoInmobiliario { get; set; } = String.Empty;
+        public string? PartidoInmobiliario { get; set; } = String.Empty;
         public string? NombreRetiro { get; set; }
         public string Tipo { get; set; }
     }
