@@ -16,11 +16,11 @@ namespace Sistema_de_planos.Migrations
                 name: "IX_Partidos_ZonaId",
                 table: "Partidos");
 
-            migrationBuilder.AddColumn<int>(
-                name: "ZonaNro",
-                table: "Partidos",
-                type: "int",
-                nullable: true);
+            //migrationBuilder.AddColumn<int>(
+            //    name: "ZonaNro",
+            //    table: "Partidos",
+            //    type: "int",
+            //    nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
