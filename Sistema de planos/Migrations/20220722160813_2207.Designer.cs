@@ -12,7 +12,7 @@ using Sistema_de_planos.Infraestructura.Datos;
 namespace Sistema_de_planos.Migrations
 {
     [DbContext(typeof(PlanosContext))]
-    [Migration("20220722151854_2207")]
+    [Migration("20220722160813_2207")]
     partial class _2207
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,8 +169,9 @@ namespace Sistema_de_planos.Migrations
                     b.Property<int?>("PartidoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PartidoInmobiliario")
-                        .HasColumnType("int");
+                    b.Property<string>("PartidoInmobiliario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Propietario")
                         .IsRequired()
