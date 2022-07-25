@@ -53,15 +53,16 @@ namespace Sistema_de_planos.Controllers
                     NombreRetiro = p.NombreRetiro,
                     Tipo = p.Tipo,
                     TieneHistoricos = p.Historicos.Count() != 0,
-                    PartidoId = (int)p.PartidoId
-        }),
+                    PartidoId = (int)p.PartidoId,
+                    PartidoIdNombre = p.PartidoId + " - " + p.Partido.Nombre
+                }),
                 pageIndex,
                 pageSize,
                 sortColumn,
                 sortOrder,
                 filterColumn,
                 filterQuery
-                );
+                ); ;
 
 
         }

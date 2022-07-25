@@ -16,5 +16,7 @@
         public string? NombreRetiro { get; set; }
         public Boolean TieneHistoricos { get; set; }
         public int PartidoId { get; set; }
+
+        public string PartidoIdNombre { get; set; }
     }
 }
