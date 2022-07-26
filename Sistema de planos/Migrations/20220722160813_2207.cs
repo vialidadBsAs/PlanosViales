@@ -12,7 +12,7 @@ namespace Sistema_de_planos.Migrations
                 name: "PartidoInmobiliario",
                 table: "Planos",
                 type: "nvarchar(max)",
-                nullable: false,
+                nullable: true,
                 defaultValue: "",
                 oldClrType: typeof(int),
                 oldType: "int",

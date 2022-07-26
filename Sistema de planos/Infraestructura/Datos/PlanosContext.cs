@@ -19,6 +19,8 @@ namespace Sistema_de_planos.Infraestructura.Datos
         public DbSet<Dominio.Entidades.Zona> Zonas { get; set; }
 
         public DbSet<Dominio.Entidades.LastPlanoNumber> LastPlanoNumber { get; set; }
+        public DbSet<Dominio.Entidades.PartidosArba> PartidosArba { get; set; }
+
 
 
         //public PlanosContext() { 
