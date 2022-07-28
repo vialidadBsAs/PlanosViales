@@ -48,7 +48,9 @@ namespace Sistema_de_planos.Infraestructura.Datos
                 optionsBuilder.UseSqlServer("Server=www;Database=planos;User Id=aleidi;Password=aleidi;MultipleActiveResultSets=true;",
                     option => option.UseRowNumberForPaging()
                     );
+                //optionsBuilder.UseSqlServer("Server=SI-DESARROLLO45\\SQLEXPRESS; Database=Planos; Integrated Security=true; Multiple Active Result Sets=true;");
                 //optionsBuilder.UseSqlServer("Server=SI-DESARROLLO05\\SQLEXPRESS; Database=Planos; Integrated Security=true; Multiple Active Result Sets=true;");
+
             }
         }
 
