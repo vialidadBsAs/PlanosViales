@@ -132,6 +132,7 @@ namespace Sistema_de_planos.Controllers
             if (planoM.Arancel != 0) _context.Entry(plano).Property(p => p.Arancel).IsModified = true;
             if (planoM.Tipo != "") _context.Entry(plano).Property(p => p.Tipo).IsModified = true;
             if (planoM.PartidoInmobiliario != null) _context.Entry(plano).Property(p => p.PartidoInmobiliario).IsModified = true;
+            if (planoM.FechaOriginal != null) _context.Entry(plano).Property(p => p.FechaOriginal).IsModified = true;
             _context.SaveChanges();
             return NoContent();
 
