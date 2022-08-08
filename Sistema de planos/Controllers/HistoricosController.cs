@@ -37,7 +37,7 @@ namespace Sistema_de_planos.Controllers
                 FechaPresentacion = h.FechaPresentacion,
                 FechaRetiro = (DateTime)h.FechaRetiro,    
                 NombreRetiro = h.NombreRetiro,
-                EstadoDescripcion = h.Estado.Descripcion
+                EstadoDescripcion = h.Estado.Codigo
             })
                 .ToListAsync();
         }
@@ -60,7 +60,7 @@ namespace Sistema_de_planos.Controllers
                     FechaPresentacion = h.FechaPresentacion,
                     FechaRetiro = (DateTime)h.FechaRetiro,
                     NombreRetiro = h.NombreRetiro != null ? h.NombreRetiro : "",
-                    EstadoDescripcion = h.Estado.Descripcion
+                    EstadoDescripcion = h.Estado.Codigo
                 })
                 .ToListAsync();
         }

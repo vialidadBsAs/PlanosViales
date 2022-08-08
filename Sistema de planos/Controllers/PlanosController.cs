@@ -46,7 +46,7 @@ namespace Sistema_de_planos.Controllers
                     Propietario = p.Propietario,
                     Arancel = p.Arancel,
                     FechaOriginal = p.FechaOriginal,
-                    EstadoDescripcion = p.Estado.Descripcion,
+                    EstadoDescripcion = p.Estado.Codigo,
                     PartidoNombre = p.Partido.Nombre,
                     PartidoInmobiliario = p.PartidoInmobiliario,
                     FechaRetiro = p.FechaRetiro,
@@ -158,7 +158,6 @@ namespace Sistema_de_planos.Controllers
 
             plano.EstadoId = 25; // EL 25 ES EL REINGRESADO
             plano.FechaRetiro = null;
-            plano.NombreRetiro = null;
             plano.FechaOriginal = DateTime.Now;
 
            
@@ -182,10 +181,14 @@ namespace Sistema_de_planos.Controllers
             {
                 return Problem("Entity set 'PlanosContext.Planos'  is null.");
             }
-
+            int table_size;
+            LastPlanoNumber actualRow = _context.LastPlanoNumber.First(); // trae el numero que esta en la tabla last plano number    
+            _context.Entry(actualRow).State = EntityState.Modified;      //  
+            actualRow.LastNroPlano = actualRow.LastNroPlano + 1;
+            table_size = actualRow.LastNroPlano;
             Plano plano = new()
             {
-                NumPlano = planoM.NumPlano,
+                NumPlano = table_size,
                 Propietario = planoM.Propietario,
                 Arancel = planoM.Arancel,
                 FechaOriginal = planoM.FechaOriginal,
@@ -240,28 +243,16 @@ namespace Sistema_de_planos.Controllers
         [HttpGet("lastPlanoNumber")]
         public async Task<int> GetLastNroPlano()
         {
-            int table_size;
+           
             
-            try
-            {
-                LastPlanoNumber actualRow = _context.LastPlanoNumber.First();               
-                //_context.LastPlanoNumber.Attach(actualRow);
-                _context.Entry(actualRow).State = EntityState.Modified;
-                actualRow.LastNroPlano = actualRow.LastNroPlano + 1;
-                table_size = actualRow.LastNroPlano;
+        
+                LastPlanoNumber actualRow = _context.LastPlanoNumber.First(); // trae el numero que esta en la tabla last plano number              
+                
 
-            }
-            catch (InvalidOperationException) // En caso que la fila aun no exista, se levanta la excepcion
-            {
-                table_size = _context.Planos.CountAsync().Result + 2003;
-                LastPlanoNumber createRow = new LastPlanoNumber
-                {
-                    LastNroPlano = table_size
-                };
-            _context.LastPlanoNumber.Add(createRow);
-            }
+
+            
             await _context.SaveChangesAsync();
-            return table_size;
+            return actualRow.LastNroPlano + 1;
         }
 
         [HttpGet("estadosStats")]
