@@ -54,7 +54,8 @@ namespace Sistema_de_planos.Controllers
                     Tipo = p.Tipo,
                     TieneHistoricos = p.Historicos.Count() != 0,
                     PartidoId = (int)p.PartidoId,
-                    PartidoIdNombre = p.PartidoId + " - " + p.Partido.Nombre
+                    PartidoIdNombre = p.PartidoId + " - " + p.Partido.Nombre,
+                    EstadoCodDesc = p.Estado.Codigo + " - " + p.Estado.Descripcion
                 }),
                 pageIndex,
                 pageSize,

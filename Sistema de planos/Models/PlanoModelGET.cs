@@ -18,5 +18,7 @@
         public int PartidoId { get; set; }
 
         public string PartidoIdNombre { get; set; }
+
+        public string  EstadoCodDesc { get; set; }
     }
 }
