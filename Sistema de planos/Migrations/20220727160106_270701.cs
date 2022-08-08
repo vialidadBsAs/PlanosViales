@@ -8,30 +8,30 @@ namespace Sistema_de_planos.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Planos_PartidosArba_PartidoId",
-                table: "Planos");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Planos_PartidosArba_PartidoId",
+            //    table: "Planos");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Planos_Partidos_PartidoId",
-                table: "Planos",
-                column: "PartidoId",
-                principalTable: "Partidos",
-                principalColumn: "Id");
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_Planos_Partidos_PartidoId",
+            //    table: "Planos",
+            //    column: "PartidoId",
+            //    principalTable: "Partidos",
+            //    principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Planos_Partidos_PartidoId",
-                table: "Planos");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Planos_Partidos_PartidoId",
+            //    table: "Planos");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Planos_PartidosArba_PartidoId",
-                table: "Planos",
-                column: "PartidoId",
-                principalTable: "PartidosArba",
-                principalColumn: "Id");
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_Planos_PartidosArba_PartidoId",
+            //    table: "Planos",
+            //    column: "PartidoId",
+            //    principalTable: "PartidosArba",
+            //    principalColumn: "Id");
         }
     }
 }
