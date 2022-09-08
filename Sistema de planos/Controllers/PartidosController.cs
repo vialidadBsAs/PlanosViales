@@ -24,24 +24,24 @@ namespace Sistema_de_planos.Controllers
 
         // GET: api/Partidos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Partido>>> GetPartidos()
+        public async Task<ActionResult<IEnumerable<PartidosArba>>> GetPartidos()
         {
-            if (_context.Partidos == null)
+            if (_context.PartidosArba == null)
             {
                 return NotFound();
             }
-            return await _context.Partidos.ToListAsync();
+            return await _context.PartidosArba.ToListAsync();
         }
 
         // GET: api/Partidos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Partido>> GetPartidos(int id)
+        public async Task<ActionResult<PartidosArba>> GetPartidos(int id)
         {
-            if (_context.Partidos == null)
+            if (_context.PartidosArba == null)
             {
                 return NotFound();
             }
-            var partidos = await _context.Partidos.FindAsync(id);
+            var partidos = await _context.PartidosArba.FindAsync(id);
 
             if (partidos == null)
             {
@@ -54,7 +54,7 @@ namespace Sistema_de_planos.Controllers
         // PUT: api/Partidos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPartidos(int id, Partido partidos)
+        public async Task<IActionResult> PutPartidos(int id, PartidosArba partidos)
         {
             if (id != partidos.Id)
             {
@@ -85,16 +85,15 @@ namespace Sistema_de_planos.Controllers
         // POST: api/Partidos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Partido>> PostPartidos(PartidoModelPOST partidoM)
+        public async Task<ActionResult<PartidosArba>> PostPartidos(PartidoModelPOST partidoM)
         {
-            if (_context.Partidos == null)
+            if (_context.PartidosArba == null)
             {
                 return Problem("Entity set 'PlanosContext.Partidos'  is null.");
             }
-            Partido partidos = new();
+            PartidosArba partidos = new();
             partidos.Nombre = partidoM.Nombre;
-            partidos.Codigo = partidoM.Codigo;
-            _context.Partidos.Add(partidos);
+            _context.PartidosArba.Add(partidos);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPartidos", new { id = partidos.Id }, partidos);
@@ -104,17 +103,17 @@ namespace Sistema_de_planos.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePartidos(int id)
         {
-            if (_context.Partidos == null)
+            if (_context.PartidosArba == null)
             {
                 return NotFound();
             }
-            var partidos = await _context.Partidos.FindAsync(id);
+            var partidos = await _context.PartidosArba.FindAsync(id);
             if (partidos == null)
             {
                 return NotFound();
             }
 
-            _context.Partidos.Remove(partidos);
+            _context.PartidosArba.Remove(partidos);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -122,7 +121,7 @@ namespace Sistema_de_planos.Controllers
 
         private bool PartidosExists(int id)
         {
-            return (_context.Partidos?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.PartidosArba?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
         

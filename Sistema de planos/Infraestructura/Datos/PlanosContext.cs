@@ -11,7 +11,6 @@ namespace Sistema_de_planos.Infraestructura.Datos
     public partial class PlanosContext : DbContext //ApiAuthorizationDbContext<User>
     {
         public DbSet<Dominio.Entidades.Estado> Estados { get; set; }
-        public DbSet<Dominio.Entidades.Partido> Partidos { get; set; }
         public DbSet<Dominio.Entidades.Historico> Historicos { get; set; }
         public DbSet<Dominio.Entidades.Plano> Planos { get; set; }
         public DbSet<Dominio.Entidades.User> Usuario { get; set; }
