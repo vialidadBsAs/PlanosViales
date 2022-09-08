@@ -76,6 +76,10 @@ namespace Sistema_de_planos.Infraestructura.Datos
                 }
                 else
                 {
+                    if (filterColumn.Equals("fechaOriginal")){
+                        var temp = filterQuery.Split("/").Reverse();
+                        filterQuery = string.Join("-", temp);
+                    }
                     source = source.Where(
                     string.Format("{0} == (@0)",
                     filterColumn),
