@@ -101,8 +101,41 @@ namespace Sistema_de_planos.Controllers
             }
 
             return plano;
-
         }
+
+        [HttpGet("Estado/{estado}")]
+        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanosByEstado(string estado)
+        {
+            if (_context.Planos == null)
+            {
+                return NotFound();
+            }
+            //var p = await _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Estado.Descripcion == estado).FirstOrDefaultAsync();
+            List<PlanoModelGET> planos = new List<PlanoModelGET>();
+            var plano = _context.Planos.Include(p => p.Estado).Include(p => p.Partido).Where(p => p.Estado.Descripcion.Contains(estado)).ToList();
+            foreach (var p in plano)
+            {
+                planos.Add(new()
+                {
+                    Id = p.Id,
+                    NumPlano = p.NumPlano,
+                    Propietario = p.Propietario,
+                    Arancel = p.Arancel,
+                    FechaOriginal = p.FechaOriginal,
+                    EstadoDescripcion = p.Estado.Descripcion,
+                    PartidoNombre = p.Partido.Nombre,
+                    PartidoInmobiliario = p.PartidoInmobiliario,
+                    FechaRetiro = p.FechaRetiro,
+                    NombreRetiro = p.NombreRetiro,
+                    Tipo = p.Tipo
+                });
+            };
+
+            
+
+            return planos;
+        }
+
 
 
         // PATCH: api/Planos/id -- SOLO CAMBIA LA FECHA DE RETIRO, EL NOMBRE Y EL ESTADO
