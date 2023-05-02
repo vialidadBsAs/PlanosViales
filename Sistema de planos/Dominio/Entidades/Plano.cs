@@ -16,6 +16,14 @@
         public PartidosArba Partido { get; set; }
         public List<Historico> Historicos { get; set; } = new List<Historico>();
         public DateTime? FechaRetiro { get; set; }
-        public string? NombreRetiro { get; set; } 
+        public string? NombreRetiro { get; set; }
+        public string? Observaciones { get; set; }
+        public string? Revisor { get; set; }
+        public string? Prioridad { get; set; }
+
+        
+
+
+
     }
 }

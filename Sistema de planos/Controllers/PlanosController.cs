@@ -55,7 +55,10 @@ namespace Sistema_de_planos.Controllers
                     TieneHistoricos = p.Historicos.Count() != 0,
                     PartidoId = (int)p.PartidoId,
                     PartidoIdNombre = p.PartidoId + " - " + p.Partido.Nombre,
-                    EstadoCodDesc = p.Estado.Codigo + " - " + p.Estado.Descripcion
+                    EstadoCodDesc = p.Estado.Codigo + " - " + p.Estado.Descripcion,
+                    Observaciones = p.Observaciones,
+                    Revisor = p.Revisor,
+                    Prioridad = p.Prioridad
                 }),
                 pageIndex,
                 pageSize,
@@ -96,7 +99,10 @@ namespace Sistema_de_planos.Controllers
                     PartidoInmobiliario = p.PartidoInmobiliario,
                     FechaRetiro = p.FechaRetiro,
                     NombreRetiro = p.NombreRetiro,
-                    Tipo = p.Tipo
+                    Tipo = p.Tipo,
+                    Observaciones = p.Observaciones,
+                    Prioridad = p.Prioridad,
+                    Revisor = p.Revisor
                 };
             }
 
@@ -260,7 +266,10 @@ namespace Sistema_de_planos.Controllers
                 PartidoInmobiliario = planoM.PartidoInmobiliario,
                 NombreRetiro = planoM.NombreRetiro,
                 FechaRetiro = planoM.FechaRetiro,
-                Tipo = planoM.Tipo
+                Tipo = planoM.Tipo,
+                Observaciones = planoM.Observaciones,
+                Prioridad = planoM.Prioridad,
+                Revisor = planoM.Revisor 
             };
 
             _context.Attach(plano);
@@ -273,6 +282,10 @@ namespace Sistema_de_planos.Controllers
             if (planoM.Tipo != "") _context.Entry(plano).Property(p => p.Tipo).IsModified = true;
             if (planoM.PartidoInmobiliario != null) _context.Entry(plano).Property(p => p.PartidoInmobiliario).IsModified = true;
             if (planoM.FechaOriginal != null) _context.Entry(plano).Property(p => p.FechaOriginal).IsModified = true;
+
+            if (planoM.Observaciones != null) _context.Entry(plano).Property(p => p.Observaciones).IsModified = true;
+            if (planoM.Revisor != null) _context.Entry(plano).Property(p => p.Revisor).IsModified = true;
+            if (planoM.Prioridad != null) _context.Entry(plano).Property(p => p.Prioridad).IsModified = true;
             _context.SaveChanges();
             return NoContent();
 

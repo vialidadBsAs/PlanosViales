@@ -13,6 +13,9 @@
 
         public DateTime? FechaRetiro { get; set; }
         public string? NombreRetiro { get; set; }
-        
+        public string? Observaciones { get; set; }
+        public string? Revisor { get; set; }
+        public string? Prioridad { get; set; }
+
     }
 }
