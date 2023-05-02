@@ -43,26 +43,94 @@ namespace Sistema_de_planos.Controllers
         }
 
         // GET: api/Historicos/5 -- POR NUMERO DE PLANO
+        //[HttpGet("{numPlano}")]
+        //public async Task<ActionResult<IEnumerable<HistoricoModelGET>>> GetHistorico(int numPlano)
+        //{
+        //  if (_context.Historicos == null)
+        //  {
+        //      return NotFound();
+        //  }
+        //    return await _context.Historicos
+        //        .Include(h => h.Plano)
+        //        .Include(h => h.Estado)
+        //        .Where(h => h.Plano.NumPlano == numPlano)
+        //        .Select(h => new HistoricoModelGET
+        //        {
+        //            Id = h.Id,
+        //            Observacion = h.Observacion,
+        //            FechaPresentacion = h.FechaPresentacion,
+        //            FechaRetiro = (DateTime)h.FechaRetiro,
+        //            NombreRetiro = h.NombreRetiro != null ? h.NombreRetiro : "",
+        //            EstadoDescripcion = h.Estado.Codigo
+        //        })
+        //        .ToListAsync();
+        //}
+
+        // GET: api/Historicos/5 -- POR NUMERO DE PLANO
         [HttpGet("{numPlano}")]
-        public async Task<ActionResult<IEnumerable<HistoricoModelGET>>> GetHistorico(int numPlano)
+        public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetHistoricos(int numPlano)
         {
-          if (_context.Historicos == null)
-          {
-              return NotFound();
-          }
-            return await _context.Historicos.Include(h => h.Plano)
-                .Include(h => h.Estado)
-                .Where(h => h.Plano.NumPlano == numPlano)
-                .Select(h => new HistoricoModelGET
+            if (_context.Historicos == null)
+            {
+                return NotFound();
+            }
+
+            var planos = new List<PlanoModelGET>();
+
+            var plano = _context.Planos
+                .Include(p => p.Estado)
+                .Include(p => p.Partido)
+                .Where(p => p.NumPlano == numPlano)
+                .ToList()
+                .OrderBy(p => p.NumPlano);
+
+
+            foreach (var p in plano)
+            {
+                planos.Add(new()
                 {
-                    Id = h.Id,
-                    Observacion = h.Observacion,
-                    FechaPresentacion = h.FechaPresentacion,
-                    FechaRetiro = (DateTime)h.FechaRetiro,
-                    NombreRetiro = h.NombreRetiro != null ? h.NombreRetiro : "",
-                    EstadoDescripcion = h.Estado.Codigo
-                })
-                .ToListAsync();
+                    Id = p.Id,
+                    NumPlano = p.NumPlano,
+                    Propietario = p.Propietario,
+                    Arancel = p.Arancel,
+                    FechaOriginal = p.FechaOriginal,
+                    EstadoDescripcion = p.Estado.Descripcion,
+                    PartidoNombre = p.Partido.Nombre,
+                    PartidoInmobiliario = p.PartidoInmobiliario,
+                    FechaRetiro = p.FechaRetiro,
+                    NombreRetiro = p.NombreRetiro,
+                    Tipo = p.Tipo
+                });
+                var historico = _context.Historicos
+                .Include(p => p.Plano)
+                .Include(e => e.Estado)
+                .Where(h => h.PlanoId == p.Id);
+
+                foreach (var h in historico)
+                {
+                    planos.Add(new()
+                    {
+                        Id = h.PlanoId,
+                        NumPlano = h.Plano.NumPlano,
+                        Propietario = h.Plano.Propietario,
+                        Arancel = h.Plano.Arancel,
+                        FechaOriginal = h.FechaPresentacion,
+                        EstadoDescripcion = h.Estado.Descripcion,
+                        PartidoNombre = h.Plano.Partido.Nombre,
+                        PartidoInmobiliario = h.Plano.PartidoInmobiliario,
+                        FechaRetiro = h.FechaRetiro,
+                        NombreRetiro = h.NombreRetiro,
+                        Tipo = h.Plano.Tipo
+                    });
+                };
+
+                
+            }
+            List<PlanoModelGET> SortedList = planos
+                    .OrderBy(o => o.NumPlano)
+                    .ThenBy(p => p.FechaOriginal)
+                    .ToList();
+            return SortedList;
         }
 
         // PUT: api/Historicos/5

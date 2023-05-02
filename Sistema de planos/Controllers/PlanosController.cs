@@ -175,11 +175,6 @@ namespace Sistema_de_planos.Controllers
                 .ToList()
                 .OrderBy(p => p.NumPlano);
 
-            //var historicos = _context.Historicos
-            //    .Include(p => p.Plano)
-            //    .Where(h => h.FechaPresentacion == fecha)
-            //    .ToList()
-            //    .OrderBy(p => p.Plano.NumPlano);
 
             foreach (var p in plano)
             {
@@ -220,26 +215,69 @@ namespace Sistema_de_planos.Controllers
                     });
                 };
             };
-
-            //foreach (var p in historicos)
-            //{
-            //    planos.Add(new()
-            //    {
-            //        Id = p.PlanoId,
-            //        NumPlano = p.Plano.NumPlano,
-            //        Propietario = p.Plano.Propietario,
-            //        Arancel = p.Plano.Arancel,
-            //        FechaOriginal = p.FechaPresentacion,
-            //        EstadoDescripcion = p.Estado.Descripcion,
-            //        PartidoNombre = p.Plano.Partido.Nombre,
-            //        PartidoInmobiliario = p.Plano.PartidoInmobiliario,
-            //        FechaRetiro = p.FechaRetiro,
-            //        NombreRetiro = p.NombreRetiro,
-            //        Tipo = p.Plano.Tipo
-            //    });
-            //};
-
             List<PlanoModelGET> SortedList = planos.OrderBy(o => o.NumPlano).ThenBy(p => p.FechaOriginal).ToList();
+            return SortedList;
+        }
+
+            [HttpGet("Fechas/{fechaDesde}/{fechaHasta}")]
+            public async Task<ActionResult<IEnumerable<PlanoModelGET>>> GetPlanosByFechas(DateTime fechaDesde, DateTime fechaHasta)
+            {
+                if (_context.Planos == null)
+                {
+                    return NotFound();
+                }
+
+                var planos = new List<PlanoModelGET>();
+
+                var plano = _context.Planos
+                    .Include(p => p.Estado)
+                    .Include(p => p.Partido)
+                    .Where(p => p.FechaOriginal >= fechaDesde && p.FechaOriginal <= fechaHasta)
+                    .ToList()
+                    .OrderBy(p => p.NumPlano);
+
+
+                foreach (var p in plano)
+                {
+                    planos.Add(new()
+                    {
+                        Id = p.Id,
+                        NumPlano = p.NumPlano,
+                        Propietario = p.Propietario,
+                        Arancel = p.Arancel,
+                        FechaOriginal = p.FechaOriginal,
+                        EstadoDescripcion = p.Estado.Descripcion,
+                        PartidoNombre = p.Partido.Nombre,
+                        PartidoInmobiliario = p.PartidoInmobiliario,
+                        FechaRetiro = p.FechaRetiro,
+                        NombreRetiro = p.NombreRetiro,
+                        Tipo = p.Tipo
+                    });
+                    var historico = _context.Historicos
+                    .Include(p => p.Plano)
+                    .Include(e => e.Estado)
+                    .Where(h => h.PlanoId == p.Id);
+
+                    foreach (var h in historico)
+                    {
+                        planos.Add(new()
+                        {
+                            Id = h.PlanoId,
+                            NumPlano = h.Plano.NumPlano,
+                            Propietario = h.Plano.Propietario,
+                            Arancel = h.Plano.Arancel,
+                            FechaOriginal = h.FechaPresentacion,
+                            EstadoDescripcion = h.Estado.Descripcion,
+                            PartidoNombre = h.Plano.Partido.Nombre,
+                            PartidoInmobiliario = h.Plano.PartidoInmobiliario,
+                            FechaRetiro = h.FechaRetiro,
+                            NombreRetiro = h.NombreRetiro,
+                            Tipo = h.Plano.Tipo
+                        });
+                    };
+                };
+            
+                List<PlanoModelGET> SortedList = planos.OrderBy(o => o.NumPlano).ThenBy(p => p.FechaOriginal).ToList();
             return SortedList;
         }
 
