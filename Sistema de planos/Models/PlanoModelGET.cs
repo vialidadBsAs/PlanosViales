@@ -20,5 +20,8 @@
         public string PartidoIdNombre { get; set; }
 
         public string  EstadoCodDesc { get; set; }
+        public string Observaciones { get; set; }
+        public string Revisor { get; set; }
+        public string Prioridad { get; set; }
     }
 }

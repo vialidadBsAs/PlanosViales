@@ -44,10 +44,10 @@ namespace Sistema_de_planos.Infraestructura.Datos
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=www;Database=planos;User Id=aleidi;Password=aleidi1;MultipleActiveResultSets=true;",
-                option => option.UseRowNumberForPaging()
-                );
-                //optionsBuilder.UseSqlServer("Server=SI-DESARROLLO45\\SQLEXPRESS; Database=Planos; Integrated Security=true; Multiple Active Result Sets=true;");
+                //optionsBuilder.UseSqlServer("Server=www;Database=planos;User Id=aleidi;Password=aleidi1;MultipleActiveResultSets=true;",
+                //option => option.UseRowNumberForPaging()
+                //);
+                optionsBuilder.UseSqlServer("Server=srv-desarrollo;Database=planos;User Id=sa;Password=desarrollo;MultipleActiveResultSets=true;");
                 //optionsBuilder.UseSqlServer("Server=SI-DESARROLLO05\\SQLEXPRESS; Database=Planos; Integrated Security=true; Multiple Active Result Sets=true;");
 
             }
