@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
     <PackageReference Include="EfCore.SqlServer2008Query" Version="1.0.4" />
     <PackageReference Include="EntityFrameworkCore.UseRowNumberForPaging" Version="0.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="6.0.6" />
@@ -19,8 +20,24 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
+    <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.17" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controllers\Resources\Reportes\SeguimientoDePlanoDS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SeguimientoDePlanoDS.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Controllers\Resources\Reportes\SeguimientoDePlanoDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SeguimientoDePlanoDS.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

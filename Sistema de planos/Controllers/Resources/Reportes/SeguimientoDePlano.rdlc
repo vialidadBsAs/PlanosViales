@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="InformeDep">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>ab5d9a27-0f27-43ae-a5f7-e303e41f4f00</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="SeguimientoDePlanoDS">
+      <Query>
+        <DataSourceName>InformeDep</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="NumPlano">
+          <DataField>NumPlano</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Propietario">
+          <DataField>Propietario</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Arancel">
+          <DataField>Arancel</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="FechaOriginal">
+          <DataField>FechaOriginal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EstadoDescripcion">
+          <DataField>EstadoDescripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PartidoNombre">
+          <DataField>PartidoNombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PartidoInmobiliario">
+          <DataField>PartidoInmobiliario</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaRetiro">
+          <DataField>FechaRetiro</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tipo">
+          <DataField>Tipo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreRetiro">
+          <DataField>NombreRetiro</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TieneHistoricos">
+          <DataField>TieneHistoricos</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="PartidoId">
+          <DataField>PartidoId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="PartidoIdNombre">
+          <DataField>PartidoIdNombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EstadoCodDesc">
+          <DataField>EstadoCodDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Observaciones">
+          <DataField>Observaciones</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Revisor">
+          <DataField>Revisor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Prioridad">
+          <DataField>Prioridad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>InformeDep</rd:DataSetName>
+        <rd:SchemaPath>D:\Usuario\Escritorio\Proyectos\Sistema-de-planos\sistema-de-planos-backend\Sistema de planos\Controllers\Resources\Reportes\SeguimientoDePlanoDS.xsd</rd:SchemaPath>
+        <rd:TableName>SeguimientoDePlanoDS</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>5.12158cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.12158cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4.0897cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4.78528cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.75875cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Fecha de Ingreso/Reingreso</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox20">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Estado</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox19">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Fecha de retiro</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox21">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Nombre del retirante</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>1.10271cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="FechaOriginal">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=FormatDateTime(Fields!FechaOriginal.Value, DateFormat.ShortDate)</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>FechaOriginal</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="EstadoDescripcion">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!EstadoDescripcion.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>EstadoDescripcion</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="FechaRetiro">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=FormatDateTime(Fields!FechaRetiro.Value, DateFormat.ShortDate)</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>FechaRetiro</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="NombreRetiro">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NombreRetiro.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NombreRetiro</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Detalles" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>SeguimientoDePlanoDS</DataSetName>
+            <Top>2.40454cm</Top>
+            <Left>0.50743cm</Left>
+            <Height>1.86146cm</Height>
+            <Width>19.11814cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Textbox15">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Nro. de plano: " + First(Fields!NumPlano.Value.ToString, "SeguimientoDePlanoDS")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>0.17639cm</Top>
+            <Left>1.03342cm</Left>
+            <Height>0.62646cm</Height>
+            <Width>6.20826cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Propietario: " + First(Fields!Propietario.Value, "SeguimientoDePlanoDS")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>0.97924cm</Top>
+            <Left>1.03343cm</Left>
+            <Height>0.67938cm</Height>
+            <Width>8.90701cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>2.01042in</Height>
+        <Style />
+      </Body>
+      <Width>7.77869in</Width>
+      <Page>
+        <PageHeader>
+          <Height>1.98437cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>SEGUIMIENTO DE PLANO VIAL</Value>
+                      <Style>
+                        <FontSize>18pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>0.66573cm</Top>
+              <Left>4.64027cm</Left>
+              <Height>0.84625cm</Height>
+              <Width>10.20002cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Image2">
+              <Source>Embedded</Source>
+              <Value>InformeHeaderDerecha</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.4724cm</Top>
+              <Left>16.53608cm</Left>
+              <Height>1.03958cm</Height>
+              <Width>3.08949cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0.5cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="InformeHeaderDerecha">
+      <MIMEType>image/bmp</MIMEType>
+      <ImageData>Qk3uYgAAAAAAADYAAAAoAAAAnAAAADYAAAABABgAAAAAALhiAADEDgAAxA4AAAAAAAAAAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////3///7///////////////////7+//7///////7///7+/v///f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v//+//+/v/+//7+/v7+/f7+/v3+//3+//3///7///////7/8f395f392Pv90fv7yvv9zPv70Pv81/v84/3+8fz+///////////+//77/f/++//////+/v7+/f7+//7+/v///////////v///f///v//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v//+/38/f799f38/f3+/f38//z8//z9//7/+P7+xPv8kvX0WvT0RvP6Le/7IPL4HvP4IPL4H/P4KfL4QvT4YvP0hvb2qfr58/z9///8///6/v36+f/+/Pz8/Pz8/vz8/v///////////v//+v///f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f7//Pv++fz+9P////39//z4///68f/9bPj4JvH2D+/6AfT3APL4AO/9AO/+APH9APT+APP+APL+AO/+APD9APT7APX5Bu75L+75cvL3zPz9//////j7/Pz9//v98v7+/////////v///////v///v//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////P//9/3///36///6/v//xvz9avT4C/DzAOz8APH/APj/APr/Bv//Bf//C///Afr/AfL+APT+A/X/Df//Cf//Af//Afr/APn/APX7APH9AOz4QfT4zP78/P/9//79/fv9/////P/++////v///////////////////////////////////////////////////f39/f39/////////f39/f39/f39/////////////f39/f39/////v7+/v7+/f39/v7+/////f39/////////////////////////////////f39/f39/f39/f39/f39/////f39/v7+/v7+/v7+/v7+/v7+/v7+/v7+/////f39/f39/f39/f39/f39/f39/v7+/f39/////f39/f39/////v7+/v7+/v7+/v7+/v7+/f39/////////////////////////f39/////f39/f39/f39/////////////////////////////////f39/f39/Pz8/f39/v7+
+/////////v7+/v7+/v7+/////f39/f39/////////////////////////////////////////////////////////////////f/+/Pz8///89v79gfb5F+/2APD6APL/Bf//Ff//GfLxINDPILG8KZefJ3qAEODmAPn/A/f/Fd3lJX+JKZWbGbW5H8/PHOjoE///BP7/APX/AO/7EvH3dfX53f38//77/f/++//9/f///////////////////////////////////////////////////f39/f39/f39/v7+/v7+/v7+/f39/f39/////////////f39/v7+/v7+/v7+/f39/f39/f39/v///f39/v7+/////////////////////////////Pz8/v7+/f39/f39/v7+/Pz8/f39/f39/v7+/v7+/v7+/v7+/v7+/v7+/v7+/f39/f39/v7+/Pz8/f39/v7+/f39/v7+/f39/f39/Pz8/v7+/v7+/v7+/v7+/v7+/f39/f39/v7+/////////////////f39/f39/////f39/v7+/Pz8/v7+/////////////////////////////f39/f39/v7+/f39/Pz8/////////v7+/v7+/v7+/////f39/Pz8/////////////////////////////////////////////v///v7//v7+//7//f7////+//79zPv9T/L4AO75APP+AP//H///HMTJGnN7EUhPDRoeCAwVDQsSBAAAG8vPA///Cf3/GcfKBQAHEAwPCA8UDBccED09GXyAIMfLHv//Af//APD+APD5OPP0t/j7///////+//7+/v/+/P///v///////////////////////////////////////Pz8/////////////////////////f39/////v///v7+/f39////////////////////////////////////////////
+///////////////+/////v7+/////////////////////////////////////////////////////////////////////////////////////////////f39/////////////////////////////////////////////////////v7+/f39/////////////////v7+/v/+/v7+/v7+/v7+//7+/v7+/////////////////////////////////////////////////////////////////////v7+///+/////////////////////////f/++v39+f3+/P39/fz+///8sPv5Iu/0APD8APX/Fv//LuHjElxkCA8RDwQJFAgSFxMZExUdFhkbBwAAGs7VAP//B/7/GszNCA0LGxccHhUcFhUWFA0OEgMIBREXFE9UK9bWDv//APf/APL5DO34pPf8///7//37+v38+f7+/v7//////////////////////////////////////v79+Pn5b3FzMC8uMjIyTUxM+fr6///////8/P///f79////9ff4JCQjNDQzQUJC9vX1qKinJSUkNDMzQD9A/////v7//v7////////+///7///9////cXB0Ly8uNDQ0LC8y////s7S3NTY1NTU0NjY1NjY2NzY2NzY2NzY2NzY2NjY2MTAwX2Fi////ra2tODg4MC8vXV1d5+fn////y83NNTU1NTU0NjY1NjY2NjY2NjY1NTU0Ojk7hIeH5+fn/////f39/Pz8////RUVFMzQzKCgouLi4/////f79/fz9/Pz8/Pz9/v77////0tLTQEBBMzIyNDM0sLCw////IiQkNjU1NjY1NjY2NzY2NjY1NjY1MjExaGhsz9LR/////////v76///////////////////////////++//6+vz+//z6///+mvn7De75APP7APn/Jv/9IoKEBQsXCAEO
+EBgYEhscFRkfFhkeFBcgFxsdCAABIc7XAP//Bf//GsrQCgsRFRggFhYiGBciGRggFBYcFRgaEQkNAAAAKZKcIv//Av//APT6BfPyhPb7+//9//z7+Pz8/v3/////////////////////////////////////////7OztGx4kAwQNDxMZAAACs7e5///////7+////P/9////////AAAABQgPHB4j8/Ly3NzeFBUaAwYMAAAA0c/Q/////v7+/v/8/v/+///8////////AAAADRIWAAAAra6u////rK2wBggRDRAVDhEXCAsPBgkOBgkOBgoOBgoOCwsRAAAASk1N////o6OlAwYKAgULNDU46Ojp////y8zLDREUBwoSDhAZBwwPBwoPBwoPCQwRBQgOAAABCAkKjo6Q/////v7+////VVVbAAAAAAADYGFg/v7+/v7+/f39/////////v79////kpKWAAIJBwkNKiwv2tvb////AAUGBQkOEBQaCAwRBgkOBgkOCAsRCAsQAAAFAAAAa21v/////////////////////////////////P/++/37//77///8r/v8AO/4APL9Av//J/r5FEJJAgACERQXHhscHBsaFBwcFxgeGRkdGBcgGRodBgABH83XA///Bf7/GcnRCwsRGBodHhkgGxgeBRwdGBgeHBYcHxgdFRceAAAAEUlPJujpB///APP9AO35kPf4////+f38/P///v//////////////////////////////////////np+hAAAFFRcgFxoeAgYLU1NV///////9+////P/9////////AAAADA8WIiQq7/Dv/v/+VllZBwoQAAAAgoSC////////////////////////qamrAAAADBAUHiEl8PDw////sLGyDRAXEBMZGRseNjU1ODg3NjY2NjY2NjY2NjY2MTEwY2Jl////pqWnCAsQCg4SODo96urp////zM3NFxgc
+DhAZEhUcODc2ODc3NzY1OTk4ISEiCAgPDQ8VAAAAwMHC////////////AAAAFhgeAAAA5+jo/////////////////////Pz8Pz5DCAwRBwoOdXZ2////////CQ0NDREXDg8WNTQ0ODc3NjY2ODc3LS0sBwYODxQYAAAAZmds/////////v7+/////////////////P7/+/v8//76tfv8Fu71APH+CP//JebnDkJGEwABEgkMDggODgkNEgYNEAYPFgYRExcbGBYhGxgdBgAAGc/XAf7/A///FczQDQwQEw4SDAgKFQ0NFxkbGRceEBkhEhciGBoiDQcHBwAAEC40KenoBP//APP7B/D3lvn5//3+/f79/f///////////f///v//////////////////////S05QAAIEFhkdDxEVDxEYLC4v3+Dg////+////P/9/////f//AAAADRAWIiQp7e7t////pKWmCw4SCw0TKy4wra6wr7CwrK2urK2urq2wtba4PD1ACQwSBAcLdXZ4////////r7KzDhEYAwYLS05R////////////////////////////////////pqanCAoQCg0TODs96urp////zM7OFRkaBQcQHCAk////////////////4+PlT05SCAoSDBEaDxMV8vLy////////LTE2BwgMAAEJgYKEtre5rKyurK2vrK2vsbO0jY6RFhccERQZDA4QycvK////////CAwODxIaAAAA8O/v////////////////dXV5BggPERQfAAAA4ODh/////f39/////////////////v7+//383fz9N/H3APD8APr/I+3yG0RLBgQCEBMcHVZeEU5SEE5UE01UFk1SGUBJAAQGDhcdHBkdBwAAHs3XAf//Av//GsvRAwQFH0VRFldhGD5FFg8aGRkeFhkeGRoeCQAIHF9jG1ddDhUfCygsJv//CPz/APD+DfLy2v36///+/P//////
+/////f///f//////////////////////AAAAERQbERUbUE9UBQYPAgMJra2u////+////P/9/////f//AAAADRAVIiQo7O3t////4eHiLC4yDhAZEhAXDw4WDxAVEBAVDxAUDhEWCw8UDA8UEhQbEBIauru8////////r7KzDhEYAwYKQ0ZI+Pn5///////9/f/+/f////////////7+////pqanCAsQCg0TODs96urp////zM7OFRkaBgcRFxkf/////////P38/v38////6evqKi4yCA0YBQkOm5yc////////mp2fAAAAGBYgCwwTDxIWDRAWDBAVDBAVDhEVDA8TERUbDBAVIiUl/////f7/////CAwODxMYAAAA3d3d/////P3+/P79////////a2ttBQYPAgIHSUtO/////f39///////6+//9+/3+///8/f/7Xvf8APD6APT+JP//G2trCQAGGxcbBx0dNv//Ev79Hf//Ef//Ff//HP//MsLDAAAAGxoeBwABGc7WBP//AP//GcvQAAAAMIGLLv//KNLVBhIeGAoPGhEQBwIBEhslN///MPDyGExUBQAAD15kI///APj/APT6SfL19v////78+vz//vz7/v79/v3//P/8///+/Pz7////qquuAAAACQsPUFFUw8TFAAAACAoQXWBh/Pv7/v///f38/////v//AAAADRAWIiQp7O3t////////W1xeBQYOGBkhDxIWAAAAAAAAAAAAAAAACg4SGRwhCAsQP0BE6Ojo////////r7GyDhIXAggNRERK+fn4/////v78/f78/f////////////39////pqanCAsQCg0TODs96urp////zM3OFRccBgkOFhoe///+/////f39/f39///+/v7+ZGdpBwwRCAsRc3J1////////6OfpIB8mDAwWFhsiAAQIAAAAAAAAAAAAAAEDFBceGhwnAAAAuLq6/////f79////CAwODxEZ
+AAAA3d3d/////P38/f/9/P38////n5+fAAAAFhgeGhoa/////f39/////P79+P/9/Pz8//7+rfr7A/L5APL7Bv//JqOoAQADFhUbIRYaAhobFv//CP3/Fqy0HqClJs/TBfv8GP//JW1xCwABDgABG87WBP//BP3/GMvNCQkNBA8SKf//E///FGdxBSk1BDVFCB8lKcXFAP//FrG1CQ0VIRUdBgAIIZWZE///APP/APH3i/j2//7+/Pz+//77+v77/f7//v/8/v/+/P38////Dw8PFBgfAAAAq6qq////DA8VBQkOFxof4uLj//////39////////AAAADA8YICQp7O3t////////zs/RBgYLERQbHyIlmp2dsbKzra6xqqysLjE1DxIXBwoNjIuK////////////r7GyDhIXAQgMRERK+fn6/////Pz8/Pz8////////////////////pqanCAsQCg0TODs96urp////zM3PFRceBgoPFhgd/f7+////////////////////jpCRCAsPCg0SUFFW8PHx/////P38YmJnBwcSAwcOYWJmuLy9pqqquLm8eX6CBwoQEhMdAAAA///////+///+////CAoQDxMbAAAA3d3d///////8///+///+////vr3AEBEXEBMZEhMS7/Dw////////+/3/+/7+//39////I/D3APX5APr/If7/CQ4ZGQoUIxcgGxcbAxobHf//Gf7+BRUfAAAABQIHEcbOAP//MauqCAAACQABHs/WBP7/Af3/G8vNDAsMCwcOG5acCf//EP//Nv//Kv//Mf//Df//Ev38IlxlCggMGRodFxAUEiAlJNrdAvj/APT8IfD12fz7///5+/79/v3+/v/+///9//7+////09LTDQ8RDxQWFxkcyMnK////SUlNAAMJAQQJk5WX/////f37////////AAAADQ8YIiQp7O3t/////f39////OTk5BwoUBAYLra2v////
+////ycnLEBMYDxMYDg8V6uvq////////////r7GyDhIXAQgMRERK+fn6/////Pz8/Pz8////////////////////pqanCAsQCg0TODs96urp////zM3PFRceBgoPFxge/v/+////////////////////mpydBwoPCw0TRUZL6+zs////////tra4DRAWCAgSPTxA////////////R0pNCAoPAAAAgoGF/////f37///+////CAoQDxMbAAAA3d3d///////8///+///+////x8bJFRYdDxMaDw8O3+Hg/////v7+/vv9+/78//7+qPn7AOz5AfT6B///H5mcBgAAGRkhExgeEhkcBRobI///E/n/Emh2Fzk9GHB3B+HsI///I3B5EQAECgACGNHUAf7/Af7/F8vOBw0PGQoNE1RcGP//Ev//FlNaG2FoFamxAP//J93gChkkExAQExsdERweBAAAHIKHDf//APH/AO/7hvf3///7/P39+/39///9////+/39////e3p8BggNCQoPRUZH/P39////mZmaBQcLAAEHTE5S/////v7+////////AAAADQ8YIiQp7O3t/////f78////p6mqAAAABAcNWlpf/Pz8////g4SHAAABBQkPP0BE//////7+////////r7GyDhIXAQgMRERK+fn6/////Pz8/Pz8////////////////////pqanCAsQCg0TODs96urp////zM3PFRceBgoPFxge/v/+////////////////////mZycBQkODA0SSUpN7ezt////////7OzuODk6Dg0XBgYKxcbF////8vLxAgUIDA8UDREWzc7O/////f38///9////CAoQDxMbAAAA3d3d///////8///+/v7+////xsfIFRYcDxMZEBEQ5OXl/////f39/fz8+/76////N+/yAPL/APj9Kv//CyIiFRMWFxgeDhkfFhgcBhsbIv//APn/DPz/Ev39C/3/
+Ef//LMTJAAAAJBYdDAADJM7VAP//BP//F8vPBgsSHBEUDSUsE9PVIP//HRwjAwABIamzEP//IaSnCAAAHhocHRgfGRgcFg8SCxwmJfPzAPj/APH9NfL36/79//z89////v/+/////v//8fHyREdLDxEVBAYKhYaH////////3t/eAAAEERMcAAAA////////////////AAAACw8YISQp7O3t////+/78////8/T0AAAECQwSFBcb9fT18fHxFxoeERUaAAAA6ezs//////38////////r7GyDhIXAQgMRERK+fn6/////Pz8/Pz8////////////////////pqanCAsQCg0TODs96urp////zM3PFRceBgoPFhge/f/+////////////////////lJaWCAsPDQ8VTU1Q8PDw/////v/+////V1tdAwQOAgQKampp////rKutAAAABwoPNDc58fLy/////f38///+////CAoQDxMbAAAA3d3d///////8///+/P38////wcHEEhMZDxIYExIS7/Hx////////+f78///5t/n6BfP5APX7Ef//KJmeAwQMGBocHBgdGRceHhcbBRsbH///BP3/HM7OL8XGEPT3FeHmARAVHgwSExwcAAAEIczYA///Bv//GsvPCQoRGxgcCwYQI4qWBv//J83MDSInEe7wNf//BQAEFhIXEhwcFBcgGhkeFRYgCAIKJZeZDv//AfL8AO/5i/j4/////vz9/f/+///9////u7u8DhAWEhEXERIS3t/f////////////Y2RmAwUOAAAAlpea/////////v//AAAADQ8XIiQp7O3t/////Pz6/Pz8////ZmhrAAADAQIIkJGT19fXAAAABwsRHyIm/////v3///3/////////r7GyDhIXAQgMRERK+fn6/////Pz8/Pz8////////////////////pqanCAsQCg0TODs96urp////zM3PFRccBgoOFxge
+///+/////f39/f39/////Pz8Xl9iCQwTBggNeXd6///////+/Pz7////8PLzDg4NDRIVLi8x6uvuPD5EBQkPCAwRq66u/////v7+/v78///+////CAoQDxIZAAAA3d3d/////f39/f39/v//////nJubAAAAFhsfGhoZ/////Pz8/v7+/v39///8e/T3APD7APP9Gv//FVlbCgcQGhodFBoaFhchGRgZBBoaHv//F/7+CQsPAAAAEoCJFv//N/D8AAAAHR0gCAABGc3XAv3/BP//GMrQCgwPGxkgDgsQFElNE/r7H+nsGImWEv//K9LbAAAAGxwiFRggGBgeGRkbEBsgDwQLE09RF///APL7APL7UvD6///+/fz8/f7////+////eHt9BwgRAwYLSkpQ/f3+/////vz9////oqOiAAADDhEaJCQm/////////v//AAAADRAWIiQo7O3t/////f3+////////urq6BwoOAAMIXmBkU1RYCAsSAAAAlZaV/////fn9//7+////////r7GyDhIXAQgMRERK+fn6/////Pz8/Pz8////////////////////pqanCAsQCg0TODs96urp////zM7OFRkaBgcRFxge/v37////+/v5/f38////3t7fICMpChAXCQsQnZ2d/////////f3+/f39////QEFCBQUNDQ4Vg4SJFxgXDhAYKSku29vb///////////8///+////CAoQDxMYAAAA3t3d////+f39+/z7////////W1tgBwkOAwQITU9P//////////////3/7f38SvT1APP9APb/HPn6EkRHEwsTGhsbGBgdGhYfIBYaAxsbGP//Dfv/EHd/G19hGMDGAP//Sf//AAAAGR4gCQACHM/XAP3/BP//GcrQCwsPHRofFBIYDBUaI9LVAP//BPD4I///C0RRDggNGBoeFxkeExgcGBkeFxkgFQoREScuI///APf/APT8Fu/1/f/9//z8
+/f3+////9fT1PkFEBQcPAAAEhYWH/////////v3+////yMvNFxoeERQaDQwN2tnZ////////AAAADBAXISQo7O3t/////f3+////////8vLyKS0wCAsQHSAlFRYbCg0TGBse3Nzd/////Pr9//79////////r7GyDhIXAQgMRERJ+fn5/////Pz8/Pz8////////////////////pqWnCAoPCg0TODs96urp////zM7OFRgaBQYPHSAl////////////////0dLSSUdNBQkQEhUgCgoM9/j4/////////v7+/Pz8////ubu7AAAAFhcdGx8kExcZAwYNV1da///////////////8///+////CAoQDxMZAAAA8PDw////////////9PPzbG5wBAUMFRgiAAAA4ePj//////////////39z/v8IPP3APP+A/z/HNXXDSQsFxEWFRodFhgfEBggEhgbBB4dIv//Bv//Dv//Cf//D///Lf//EVFbDQgJGhkfCAABF9HWAP7/BP//GMrQCwsPGxgfFxoiDQAAI42PDP//CP//ItfXAxUeGhgcGRgbGRkeDhsfGhcdGhkeFBEZCQoTJenqAP3/APP/AO/z1f/9//3+//78////z9DQAAAAExgcAAAA9vj3/////////Pz9///+////SkpJBggNBwYNcnJz////////AAAADhEXIyQp7e3t/////f39/////v79////i4uNAAAAFhoeFhkdBgkNV1lb+vr7/////v7+//7+////////r7GwDxIXAQgNREZK+fn5/////Pz8/Pz8////////////////////pqenCQwRCw4TOTo96urq////zM3NFRgcDhAYEhQcLy4tKSkoKSkoKysqExMXDQwVFBUeAAAAvr/C//////39/////////v7+////////FhcaDw8WFBccFxofCAgJvb7B///////9///////8///+////CAoRDRIXEREZKCgn
+KiopKSkoKyoqGx4dDAsRFBccAAAAYGJk//////////////////39p/r9DvH6APX+Bv7/G7q8BREWFRMYDxgcGBcZGBQdGBYaDhAZNqutIp2iH5ykIp2nKouVESkwAwINHBwbHBQdCwAAGs7VAf3/Af//FsnQCQwMFxcdFBYgEA4SDBgdM6yxLKSrGVRcDwoQHhUdGhYcHRQcExccFBUbFBccFBkdAQAAINLTAv//AfP/APH8lvX3///+/Pz8////YmJpAAAABQcNGBwe////+/v7///8/Pz9/vz9////lZmZAAIHBgYNNDM26efn////AAAAAwYMGx0h7Ozt/////f39/////v78////ycrMEBMaBwoQDA8UAwcMt7i5///////8////////////////qqysAwYLAAAANzk/+ff4/////Pz8/Pz8////////////////////oaGkAQMJAgUKMzU46Onp////ysvLDQ8TBwgQDQ4XCA0PCQ0SBwsQBwsQBQoPAwMIAwIGi42N/////fz8////////////////////////a21vAAAADhEWBAgNIiMm/////f7+///7///////8///9////AAEHBgkODxIYCQ0SCQwSCQ0RBwsPCAoQBAIKAAADYmRk//////////////////////78iff5CO/6APX8B/7/ILC0BAMNDgwRCg0WCxATDg0UCA8TEQ4TAAAAAgAAAwAAAwAAAwAABQMGBg4VFgwSCw8VAwAAHcvQBf//Av7/FcfNBgoPEQ4UCg4WChISCQcNAgAAAgAAAwACERATCgsUBw8VCw4SCg8UCg4UCg8VDw8WAgAAJ8fJAf//APL/AO/+avP3/////vz8////DQwMNjU2JSUkr7Gz/////f78/v78/Pz9/f39////2tzcQEA/Li4uOTk4yMjH////ICAfMTAwQkNF7e3u/////f39/////f39/f7+////eXl5KysrLy4uV1dX
+5OXl///////9/////v7//v7/////vr/AP0NHNjk+aWtw+Pn4/////Pz9/Pz9////////////////////r6+wNjU2LCwsW1xc6Onp////zc/QNjc3MjIxMzMzMzMzMzMzNDMzMzMyPkBGcnZ3zM7O//////37/fv7//39////////////////////y8zNLy8xMjIyJiUkrrCz/////P78///8///////8///+////JiYpMjMyMzMzMzMzMzMzNDMzMzM0ODg9YmJnra+y/////////Pz5//////////////79dfX6APP6APH+B/X/FuDkIaSrHqqtIKmvIKytIqusIausIausI6yvIqyuIqyuIqyuI62vIautI6uuJaqsH6quIKCjEeruA/f/Bff/EeftH6SqIKmtH6uuIausIqqsJKyvI62uIqutIausIauuIKutIausH6utH6uuI6quHquvIZmeFebsAvn/APT+APL+RvH8///9//7+////7Ovr9vb48PDw/////////f38/f39/f38/f7+////////8vLy9PT18/Pz/Pz8////8fHw9PT19fT1//////7+/v7+/////f79/fv+////9/f38/P09PT1+fn4/////v7////+/////f3+/fz+/v3//v7++fn6+fr6+vr7/////fz+/fz+/f79/////////////////////Pz78/Pz8/T19PT1/v/+/f///f7+9fX19fX19fX29fX29fX29fX29vb3+fr6/////////////f3+/f7+//7+/////////////////f39////9fX29PX18PDw/////////v/+///+///////+////////8/Pz9PX09fX19fX19fX29fX29vb2+fn5/////////////v7+/v7+/////////////v/+bfX6APP7APL9A/T9Avr/Cf//Bv//B///CP//CP//CP//CP//CP//B///B///B///B///B///Cf//
+CP//Bv//Cf//APf/AfL9A/L9Avj/Cf//Bf//B///B///B///B///B///B///B///B///CP//CP//B///B///CP//Bf//D///AfT/APP/A/P9APL+Nu/4///////+/v7+/////////////////v7+/v7+///+///9///9/////v7+/////////////////f39/////////////v7+/v7+///////////9///9//79///+/////////////v7+//7+/////////v78///9/v79///9///////////////9///8//78///+/////////////////v7+/v7//////////////f7/+/7///79/////////////////////////////////////v7+/////v///////////////////////////f39/v7+/////////////////////v7+/////////////////////////////////////////////////v7+/////////////////////////////////f/+afX6APL7APL/APX7APb/APn/APr/APj/APr/APr/APr/APr/APr/APv/APv/APv/APv/APv/APz/APj/APr/AP//APX/A/P8APP8APX/APn/APr/APj/APr/APr/APv/APv/APn/APr/APr/APr/APn/APv/APz/APn/APz/A/v/APX/APX/BPL9APX+LO31/////////////////////////////////////f/+/P78+/z+/////////f///////////////Pz8/f39/////////////////////P39+/3+///9////////////////+/z8+/z9/////////////////P38/////////v/+/f38/////////////////v7//Pz8/////////f39/fz9/////////////Pz8/vz+/fz//v79/Pz8////////////////
+/////f39/f7+/////////////////////f39/////f39/////////////f39/f39/////v7+/////////f39/////////////////////////////v7+/v7+/v7+/////////f39///////////////////////////////////+bvX7APL6APL+DfT+FOjsLcXGJ8nHJ8nHKcjJKsjJKMjJKcjIKcfIKMjIKMjIKMfIKMjKKcjKJsfJJMnJKsjILsHDEe31APT/BfX+D/HzKsfGJMjHJMnIJ8jJJsjJJ8jJKMjIKMjJJcnJJcjJJcjJJcjJJcjIKMjJKcjIJcnJKr6/EPPzAPf/AfL+APT+M+73///////+////8fLxuru7u7q6ubm5ubm5xMXE/f39/////f//7O7uysrK+/398vLyysrK+/v7/f39/////Pz8xsbGjY+PsbKy5OTk////+vz8////wcLCj5CQq6ys8vHy////////4uLinJ6el5eY1tfX////8fPyzc3N9vf3////8PDxqqqqlZeXtLW1////////8/PywsHC/////f79/Pz8wMDA+vr5/v7+/v79///+/f7+////3+Dgl5iZqqmp29vc0NHR+fr6////7/DwqaqqkJKQwsHB9vb2/////////Pz8//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////79dfX6APL6APP/BP//HayvBAAACQABCgABBwAFBwAFBwAFAAAAAAAAAAAAAAAAAAAAAAAAAwAADwAFBAAECgABAAAAFsbOA///Bf//FMTHBgAADgAACAACCgAFCQAFBgABAAAABgABCgAECwAFCgAECgAECgAECAAEBwACDAAEAAAAKsTGAv//APL/APP+Q+/5///+/v/9////
+vL27AAAAKy4wMzM2KCgqBgcJTU5O9/f2////rq6vEBIT7e3twMHBGBcY8O/w////////e3p8HiAhY2NjRUZGGRsbz8/P////iY2OFBYZaGhpOjs+REVE/v7/4eLhFBUWX2BgVVVVISIjxcfHz8/QHR4g3d3e////Nzg4LzAyb25uGBgadXV1////w8TDAAAA////////8/PzAAAA6urp/////f38/v77////39/gGRoeUFBRYmJiHiAkIiQl7u7u////ODk5MTEzbWxtHh8fWFlZ7+/v/////f39//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////79ivb5BO/7APb9Bv7/G7u9DBIXGBYYGRchFRgfHhkfCQUGJGduIH2FG3V9FnaBFXB3F1ZbDigsDwAAGRwgHhkcBQAAGtDUAf//Bf//GMrRDQwQHxgeFhghHBgfFhsWCBEZLXeDCx4jGBUYIRceGhgdHBkbGhYdGxccGRkeGxsdCAAAIdDVAf//APL+APD/YvP1///+/f/9////v8DBGxsc2tzd9fX37e3u0NHSGxsbVFJV////ube5IiIk7+/vycrLKikq9fT1////19fXFRYWw8TF////////WVpbrK2t////AAAAubq9////////GBkZnZ2fYWFhUVNV////////dXZ3Njc37u7wLS4x6+ztkJSXHiAg+/39////9PL0BAMEu72+0dHQAAAE////////+fn5AAAA8fH2/////Pz8/v7//v7/UVNUY2Jk////////bm5vISEk////gIGALi0t////////2NjYV1dX0dDQ/////v7+////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////8ofj6CfD7APT7A/3/Gc7QDSAkFhQUERkgGBkcIRogAAAAM9XcFP//E///Lf//Hf//F///J/H1LICDAAAAFhogAgAAHM/XA/3/BP//F8rQCgwPGhgfFBkiHhgjCQAEHV1lP///D2VsCwkQHhofFRoeGRgdEBsfFBgdGxgfFBgZBQQKH+PmAP//AvP+APD7g/P2///+/f/9////v7/AGxsb5+fm////////////r7KxAAAA+/v9vbu9JCMl8PDvyMnLKyor9fX2////ury7Hh8g1NXW1tbV1tja2t3f9/f42djYAAAA+fr6////////293d4uLiMzIypKao////////7O3t2djY09TVLzAy9fb2JCcrfX19/////v38////JiUoam1s2dnYAAIG////////+fn5AAAA8O/1/////Pz7////7u/vGxwfnp+h////////p6mrJCYr////GxwcZ2ht8PHx0tLS29vc3N3g8vLz+vr6/v7+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////38v/z6GfH4APH+Avr/HPH0FDpDFAwSFBggFRkcFh0gBQAAHcvUCv//GqSwFEJPIWBrLb/DDf//I///IGNwDQAJCQAAJc3WAPz/BP//F8rQCwsPGxgeEhkeEhYdAQAALv//AP//G7m6Cw0cHRcdDhgaFxgeERkfGRgcHRcgEA4RESEtI///Afn/APT9APH0vfz8//7+/f39////v7/BGhoa4+Pj////////////////AwQDxcXIwsDCIyMl8PDvycrLKSgp9fT1////ubq6AAAAGBkZFBQUFhYWAAAAbm1v3NzcAAAA+/z8////+/37////+fj4LSwsqaqr
+/////Pz8////////ycrLMDAz9vb3HB8kgoKA////+/z7////KCotX2Bh2traAAAC////////+vz8AAAA7u/z/////Pz7////7u7tHx8gpKSm////////qKmrJCkr////IiIlBAUIGBgXExMTExMTAAAAm5qa/////Pz8//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////3+3fz7P/L1APT9APP8GP//El5iDQcKGhgiGBcgGBwhDQAAHc3QC///GIaIBgAACAACCAAAHp2hAP//Kt3iDxojCAAAGc/WAP3/BP//F8rQCwsPGhgeFRsfCwAEHVxoFP//APj/KP//CjFBEQwUFBweFxcdGhceGhgdGxgfDAYLEUpWFf//APL+APX+Bu718f/8//79/P7+////v7/BGhoa5OTk////////////////BgYGvr7AwsHDIyQn8PDvztDRBwcI1NTV////2tnZISIj7ezu////////T1NUkI+Q////AAAAy8zM////////cHBw0tHRU1NSZWZo////////qqqrlZaW3t7gLzAz7u7vfn6DMTIw/////////v3/CAgHp6io2NjaAAAA6urs////7e7wAAAA////////+/v8////+fn6QEBBeHl5////////e3t8ISMj////d3h3QkND////////7+/wNTc5wcHB/////Pz8//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////z9+f/9YfT2APL9APP8Dv//H5aeBgUJGBkgFxYgFRwgBwAAHc3TDf//Fo6WFA8QIBojEAMJF0tVD/v9F/b3GTxF
+BQAAGtHWA/3/Av//FsrQCwsPGxkfExMcCgwRI8fHAf//EfP+DP//JbnDAAAAGxshFhcfFRkdFBkeHBcfBwUKIJScCf//APH+APP7N/D4///+//z7+///////vr/BGhoa4+Pj////////////////AQEBz8/Rs7G0BAQG7OzrxsfIAAAARURHIyMi////Y2NmIiMmh4eGTU9QJyor29zb////b3F0FRYahYSFUlNVAwMF8fDwzs/PAQQIcXJ0dXR1AAAAn6Kh0dLTEREV29zd////ERETQkJDh4eHJSQnREVH////wcHCBQYJOz5Dfn5+Pz4/AAAA/////P38/f37////////vr6/IiMkcHBwcXJzISUqMDI29fX16urrJCUoSUpJk5GRHR8gYGFi+/v8/////Pz8/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////fv+///+nvb4AfH6APb9APz/Kvf6BAoIHRYeFxcgFR0hBgAAI8rTC///FYyYEAoQEhokDQsNGi44FvP1EPn6IUNNCAAAIc/VAv//CP//GMvRDAoQFhwcDQkPET9DEvb1EPT3JoWVBOfpM///BQAAHBMcFxYiFxkiFBkgDhQYBgMIN+DgAPn/A/P+AO/3dfj1//3/+/38/P3+////wL+/HBwc6enp////////////nZ6iAAAA/P3/7Ozsuri5+/z77u7uvLu8q6uraGho////+Pj5ra2tW1tbkJCQ5+np/////////Pz9sLGza2trg4OC6enr////////3N3feXl4b25uwMHA////7+/vvby89/b2////5eXnnJuci4qLn6Cg+/v8////5+jovL2+0dHScXJxfHx829zd/////f39///9////////////0NDRbW1tlpiZlpaYJykr8PDx
+////4ODiiomKWFlXurm5+fj6/////f39/f39/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////fz++/75////Hu/0APb9APP8Df//JZyeAQAAFRojGBsiBQAAH8zTEP//G4ySEAsNIBMdDQAFE2BlDv//G/LzEzE5AgAAGdLTAP//CP7/H8rQBA0UHxYVEQwWHre7B///OsfIAAAAHMHHAv//LKSnAAAAFR0cGBYfHRccFAADHYmLCf//APP+APL+IvD41f39//z9+P/++//9////wL+/DA0NxcfH29zc19jZnp+fAQICgoOC////8PDwzMzM+vr6/////////////////////////////////////////////vz8//7+////////////////////////////////////////////9PT00NHR+Pn4////////39/fgICA7u7u/////Pz8/////////////////////////////////////////v7+/v7+////////////m5ycGRoa7+7u////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+f7+/P36///9f/X2APD8AfP7Afn/Jvz8BA0UERAWGhwhBQAAHc3VEP//HIiNCgEFBAwVECkzHsDEB///KrW9DgsTDAAAGtDTAP7/Bv3/GczPCAwSFg4PDTlGGu3xJv//DCUzAQAAIHh6C///IeHjExsmFhAPFxkhCxMTERQfHs7SA///AvH+APH6YvT4+v7+//76/P79/f79////y8zMFxcX
+LS8wLS8wJiYnGBcZfXx+////////sbGxHR0d5eXl/////Pz8/v7++vr6/v7+/f39/f39/f39+/v7/v7+/////P39/Pz8/Pz8/f39/f39/f39/////////Pz8/f39/Pz8/Pz8////wsLCKysr29vb/////v7+////UlJSbm5u/////////Pz8+/v7/f39/Pz8/f39/Pz8/////////////////v7+/Pz8/f39/P39////qampODo68PDw/v///f39/Pz8/v7++/v7/v7+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+f3+/f77///94/7+BO/1APX6APH/DP//KI6WCAAAHhsgCQAAGcvSAP//EsrVHJacHKStFNrfFv//Nv//DB8wEgoQCwAAH87VAP3/BP7/F8vOEAsRDAYMD4SJDf//HeXoAwAAEw4QDyMsH/L1Bf//GGdsCwgMIhUjCwAEIYOIFf//APb9APL+EfP0tfr6//79+//2+/z9//3+////9/j419fX2NjY1tfY2trZ5ubm////////////9fX14eHh/f39/f39/v7+/v7+/f39/v7+/v7+/////////v7+/////////v7+/v7+/v7+/v7+/v7+/v7+/////////v7+/v7+/v7+/v7+////+Pj44+Pj+/v7/////v7+////4uLizs7O/////////v7+/v7+/v7+/v7+/v7+/v7+/////////////////////v7+/v7+/v39////8PDw3t7e/f39/f39/v7+/v7+/////v7+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////Pz/9/7+/f38////fPX3APH6APT9APT/Jf79G1RZEAAJAAAAQePkK///H///J///JP//KP//LMnSDCwuFwUUGBkdAgAAGs/VAv3/BP3/Fc3MDgkQDBohV///M///E2lyDgMGIRohBAAAOLS3Ov//QNHRECImEwAGED5KIvz8APz/APL+APL9YvD0+f7+//z++f/5/P3+//z//////////////////////////////////P39/Pv7/v7+/////////v7+/f39/////////////////////////////////////////////////////////////////////////////////////////v7+/////v7+/////////f39/////////v7+/////////////////////////////////////////////////////////////Pz8/////////f39/f39/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////P3/+f3//P3+//398/38QO/5APT9APL9Af3/JOPmCy87DAAGEiQxECw3ECYxEiU0ECMvAAAGAAAAGBETGRcdGxsdCAAAGc7UA///Av//GsrOBwgNECAqEzE/CyIwCw4aFBsXERsgChgbDA0TDS87Fi08FAYUAxUXKvn5A///AvH9APT8Hu722v3///7+/Pz++//9//z+//7//////////////f3+///8/v/9/fz8/P7++v7+/f7+/////f39////////////////////////////////////////////////////////////////////////////////////////////
+/////////f39/v7+/f39/////////v7+/Pz8/Pz8/v7+/////////////////////////////////////////////////////////f39/v7+/v7+/v7+/Pz8/Pz8/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v/////////+//37tPv7FvD3APH/APT+Cv//ItzeES47BQAADA4SEAwREwwQCw0RERcZHBkgFhkeFRchGBkdBgABH83XAP//BP//F8rRCQ0PGRUaCgwSDw4QHhYbGRceFBcgGxcgHRIdCQ0OBgAADRYkKdvbCf//APH9APP+APH0qfj6/////P///f///v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v3+//v9///+jPb4AO32APL/APH8Bv//IeHiET0/DQAAGhUbHxweGBkcExoeFBggFRkdGBcgGRodBwABHs/X
+AP//A///F8rQCgsPGhgfFxshFxodExscFhgeGRcfFRgiExgfBgAFDzc9JtHRC///APD+A/T8APH5XvT5///8///9/f///v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v7+//39//79+v/+b/j2AO75APP/APX9Bf//KPPzHHB2AgAIDgAJIhgfGR0fHBkdFxkcFRYgGRkdBwABHs/XAP7/A///FsrQCwsPGxkfGBkhFRkeEBwcGBwcGBgbDQQNAgAFGWdtJPPzA///B/H+APL/APP4SfH56f7+//76/v/9////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v/9+f78+/v+/f77+//+WPT3APT1APb6Be7+APn/Gf//Ks3PDlFdBgAACgUOExAVFBcbFhchGRodBwABHs3XAP//Av//FsrRDAsPGxkgGBghFhYaExUYFAMOBAAJEzdBKLW7G///Afn/APX+APX+AO/3RvL34/79//3/+vz8/v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v//+/z8//39/P39//z+9P//c/T6BO34APL+APX8APP+Bf//Gv//LsnME1xgCScpBxMXCQQNEAQJAwAAIcrRAP//Bf//GcXKCAAAFAIKCgcNBhEWCSImEFtiLMvPIP//B///APb6AfT8APP9APD7WvH46/39//769/76+vz8/v//////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v///v7+///+/v7+//7+//7/+v3+jfb4H+/3APH9APT+APT7APb+Af//Gf//IPr9Iby/FYSHGHh7EWFpGNvkAPr/BPn/ENnhEnV4EHV5FoeKHrO5JfH3Gf//A///APf/APT9APD+APP8D/H2dPP58P/9//3//v3++v/9/v39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////v3+//v9//7+x/r7QPL4AO/5APL9AfP+AfX8BPL9Afn/Bf3/EP//E///D///Afb/APL8APT9BPj/EP//Dv//Dv//CP//Afj/APD+APP9APT6APX+AOz4MPH3n/n5+v/9//z+/Pz9+v38+f/++/7//v///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f/++f37//3+//396v7/f/X6Ge72AO73APX/APP/BfL8APT/APH/APL+APX9Afb5BPb4Afb6AvT7APf+BfH/APP9AfT+BfH9APT7APb8APL4AO31f/z64/38//79//3+//z9+/39/P/+//z/+/z//v//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v///f78/P769fz+/vz+///8+P/9mPr4I+/yCfH4APX8APT4APP9AvD+APL/C/L8BfL9APL/APH/APP+APP+APL9APL8APX5CPX1MO71dvP62/39//z///39+/76+fz89//9+v7//v7//v3+/f7+///+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////f//+f/++f/9/P389v36/v38//37//7/+f//svn5gPb1T/T2HPT4GPH2D/H5BPP6BPL5A/T5
+B/H5EO/5GPD5I/L2R/P2bfT4qfn66f/+///9//75//z8/f3//vz8+P79/f/+//7/+/z/+v/9/f/7///9/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////v///P////7+//78/v7//f7+/v7+//7+///////+7f39zPz9u/r7ofb5j/j5ivf3iff4j/b4ovf5ufr8zfv85vz9/f3////////+/v78/v78///+/v/+/f7+/P///////////f7//P/+/v/9///+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+//z///z///7////+//78///9///9///9///8///6//77///+/////////f///P/+/////////////v//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>5cdf44d8-c116-4800-acd7-7bdf526228f5</rd:ReportID>
+</Report>
