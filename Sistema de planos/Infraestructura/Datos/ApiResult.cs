@@ -67,7 +67,7 @@ namespace Sistema_de_planos.Infraestructura.Datos
             && !string.IsNullOrEmpty(filterQuery)
             && IsValidProperty(filterColumn))
             {
-                if (filterColumn.Equals("propietario") || filterColumn.Equals("estadoCodDesc") || filterColumn.Equals("partidoNombre") || filterColumn.Equals("partidoIdNombre") || filterColumn.Equals("partidoInmobiliario"))
+                if (filterColumn.Equals("propietario") || filterColumn.Equals("estadoCodDesc") || filterColumn.Equals("partidoNombre") || filterColumn.Equals("partidoIdNombre") || filterColumn.Equals("partidoInmobiliario") || filterColumn.Equals("prioridad"))
                 {
                     source = source.Where(
                     string.Format("{0}.Contains(@0)",
