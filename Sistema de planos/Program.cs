@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Sistema_de_planos.Infraestructura.Datos;
 using Sistema_de_planos.Models;
 
@@ -11,7 +12,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<PlanosContext>(); //le digo cuál va a ser mi contexto
+builder.Services.AddDbContext<PlanosContext>( options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+}); //le digo cuál va a ser mi contexto
 
 /*builder.Services.AddDefaultIdentity<User>(options =>
 {
